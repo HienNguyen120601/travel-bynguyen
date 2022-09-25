@@ -87,12 +87,12 @@ function renderTour(tours, id = 1) {
                             <span> Book This Tour</span>
                         </div>
                         <div class="tour__booking__group">
-                            <input type="text" placeholder="Your full name">
-                            <input type="email" placeholder="Your email">
-                            <input type="number" placeholder="Your phone">
+                            <input type="text" class="tour__booking__name" placeholder="Your full name">
+                            <input type="email" class="tour__booking__email" placeholder="Your email">
+                            <input type="number" class="tour__booking__phone" placeholder="Your phone">
                             <input type="date" class="tour__booking__date">
                             <textarea placeholder="Type your message"></textarea>
-                            <button class="tour__booking__btn">Book Now</button>
+                            <button onclick="showResult();" class="tour__booking__btn">Book Now</button>
                         </div>
                     </div>
                 </div>`
@@ -100,6 +100,84 @@ function renderTour(tours, id = 1) {
     tourPackage.innerHTML = htmls.join('')
 
 }
+function showResult() {
+    const main = document.getElementById('toast');
+    let booking = document.querySelector('.tour__booking__group')
+    let name = booking.querySelector('.tour__booking__name')
+    let email = booking.querySelector('.tour__booking__email')
+    let phone = booking.querySelector('.tour__booking__phone')
+    let date = booking.querySelector('.tour__booking__date')
 
+    var regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+
+    if (name.value == '' || email.value == '' || phone.value == '' || date.value == '') {
+        if (main) {
+            const toast = document.createElement('div')
+            toast.classList.add('toasterror');
+            toast.innerHTML = `        
+                        <div class="iconerror">
+                            <i class="fa-solid fa-circle-check " ></i>
+                        </div>
+                        <div class="body">
+                            <h3 class="title">Error</h3>
+                            <p class="message">Type your infomation</p>
+                        </div>               
+                        `
+            main.appendChild(toast);
+
+            setTimeout(function () {
+                main.removeChild(toast);
+            }, 3000)
+        }
+    }
+    else if (regex.test(email.value) == false) {
+        if (main) {
+
+            const toast = document.createElement('div')
+            toast.classList.add('toasterror');
+
+            toast.innerHTML = `        
+                    <div class="iconerror">
+                        <i class="fa-solid fa-circle-check " ></i>
+                    </div>
+                    <div class="body">
+                        <h3 class="title">Error</h3>
+                        <p class="message">Type your email</p>
+                    </div>               
+                    `
+            main.appendChild(toast);
+
+            setTimeout(function () {
+                main.removeChild(toast);
+            }, 3000)
+        }
+    }
+    else {
+        if (main) {
+
+            const toast = document.createElement('div')
+            toast.classList.add('toastsuccess');
+
+            toast.innerHTML = `        
+                    <div class="iconsuccess">
+                        <i class="fa-solid fa-circle-check " ></i>
+                    </div>
+                    <div class="body">
+                        <h3 class="title">Success</h3>
+                        <p class="message">Booking Success</p>
+                    </div>               
+                    `
+            main.appendChild(toast);
+            name.value = ''
+            email.value = ''
+            phone.value = ''
+            date.value = ''
+
+            setTimeout(function () {
+                main.removeChild(toast);
+            }, 3000)
+        }
+    }
+}
 onLoad()
 
