@@ -1,0 +1,146 @@
+:root{
+    --primary-color:#ff4838;
+--text-color:#333;
+--background-color:#2d373c;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+body{
+    font-family: 'Cairo',sans-serif;
+    scroll-behavior: smooth;
+    font-size: 16px;
+    
+    
+}
+img{
+    object-fit: cover;
+}
+
+.grid{
+    width: 100%;
+    display: block;
+    padding: 0;
+}
+.grid.wide{
+    max-width:1200px ;
+    margin: 0 auto;
+}
+.row{
+    display: flex;
+    flex-wrap: wrap;
+    /* margin-left: -12px;
+    margin-right: -12px; */
+}
+.col{
+    padding-left: 12px;
+    padding-right: 12px;
+}
+.l-4{
+    flex: 0 0 33.33332%;
+    max-width: 33.33332%;
+}
+.l-3{
+    flex: 0 0 25%;
+    max-width: 25%;
+}
+.l-2{
+    flex: 0 0 16.66666%;
+    max-width: 16.66666%;
+}
+.l-8
+{
+    flex: 0 0 66.6666%;
+max-width: 66.6666%;
+}
+
+.icon__fonawsome
+{
+    font-size: 16px;
+    color: white;
+    
+}
+@media (max-width:1200px){
+    .m-4{
+        flex: 0 0 33.33332%;
+    max-width: 33.33332%;
+    }
+    .m-3{
+        flex: 0 0 25%;
+    max-width: 25%;
+    }
+    .m-6{
+        flex: 0 0 50%;
+    max-width: 50%;
+    }
+    .m-0{
+        display: none;
+    }
+    .m-2{
+        flex: 0 0 16.66666%;
+        max-width: 16.66666%;
+    }
+}
+@media (max-width:990px){
+    .ms-4{
+        flex: 0 0 33.33332%;
+    max-width: 33.33332%;
+    }
+    .ms-3{
+        flex: 0 0 25%;
+    max-width: 25%;
+    }
+    .ms-6{
+        flex: 0 0 50%;
+    max-width: 50%;
+    }
+    .ms-0{
+        display: none;
+    }
+    .ms-2{
+        flex: 0 0 16.66666%;
+        max-width: 16.66666%;
+    }
+    .ms-8{
+        flex: 0 0 66.66666%;
+        max-width: 66.66666%;
+    }
+}
+@media (max-width:760px){
+    .s-4{
+        flex: 0 0 33.33332%;
+    max-width: 33.33332%;
+    }
+    .s-3{
+        flex: 0 0 25%;
+    max-width: 25%;
+    }
+    .s-6{
+        flex: 0 0 50%;
+    max-width: 50%;
+    }
+    .s-0{
+        display: none;
+    }
+    .s-2{
+        flex: 0 0 16.66666%;
+        max-width: 16.66666%;
+    }
+    .s-8{
+        flex: 0 0 66.66666%;
+        max-width: 66.66666%;
+    }
+     .s-12{
+        flex: 0 0 100%;
+        max-width: 100%;
+    
+}
+}
+
+
+
+
