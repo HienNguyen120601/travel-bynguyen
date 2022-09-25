@@ -149,7 +149,7 @@ font-size: 12px;
 }
 @media (max-width:360px){
     .nav__bar__menuhide{
-        width: 100%;
+        width: 70%;
     }
    .cagetory__content__item{
 height: 130px;
