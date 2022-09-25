@@ -56,7 +56,7 @@ font-size: 20px;
     position:unset;
 }
 .content__icon>span{
-    padding: 9px 11px;
+    padding: 6px 14px;
 }
 .footerwidget__content__list{
     flex-direction: column;
@@ -76,6 +76,9 @@ font-size: 20px;
 
 @media (max-width:760px)
 {
+    .tour__booking{
+        width: 90%;
+    }
     .cagetory__content__item{
         height: 150px;
     }
@@ -94,7 +97,9 @@ font-size: 20px;
 }
 @media (max-width:630px)
 {
-
+    .tour__booking{
+        width: 90%;
+    }
 .top__banner__right__detail__title{
     top:70px;
     font-size: 35px;
@@ -119,7 +124,9 @@ font-size: 14px;
 }
 @media (max-width:480px)
 {
-    
+    .tour__booking{
+        width: 90%;
+    }
 .nav__bar__logo
 {
     width: 150px !important;
