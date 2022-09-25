@@ -92,7 +92,7 @@ function renderTour(tours, id = 1) {
                             <input type="number" class="tour__booking__phone" placeholder="Your phone">
                             <input type="date" class="tour__booking__date">
                             <textarea placeholder="Type your message"></textarea>
-                            <button onclick="showResult();" class="tour__booking__btn">Book Now</button>
+                            <button class="tour__booking__btn" onclick="showResult();">Book Now</button>
                         </div>
                     </div>
                 </div>`
