@@ -129,12 +129,13 @@ font-size: 14px;
     }
 .nav__bar__logo
 {
-    width: 150px !important;
+    width: 50% !important;
  
 }
 .nav__bar__logo>img
 {
     width: 100%;
+    height: 70%;
 }
 .top__banner__right__detail__content
 {
