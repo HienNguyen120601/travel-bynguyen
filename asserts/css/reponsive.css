@@ -141,6 +141,9 @@ font-size: 14px;
 {
     display: none;   
 }
+.tour__guide{
+    padding-top:100px ;
+}
 .footerwidget__info__item>span
 {
 font-size: 12px;

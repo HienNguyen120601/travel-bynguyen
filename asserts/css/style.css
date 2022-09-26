@@ -743,6 +743,9 @@ margin-top: 20px;
     background-color: var(--primary-color);
     border: 1px solid transparent;
 }
+
+    
+
 .content__icon>span:hover{
     color: var(--primary-color);
     border: 1px solid var(--primary-color);

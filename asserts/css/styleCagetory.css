@@ -619,6 +619,9 @@ outline: 2px solid var(--primary-color);
    position: relative;
     
 }
+.tour__guide__text{
+    padding: 0 12px;
+}
 .tour__guide__content{
     width: 100%;
     display: flex;
