@@ -619,7 +619,9 @@ width: 100%;
     font-weight: 600;
    
 }
-
+.tour__guide__text{
+    padding: 0 12px;
+}
 .tour__guide__guider{
 display: flex;
 }
