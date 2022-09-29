@@ -70,6 +70,8 @@ max-width: 66.6666%;
 }
 .header__topbar__user{
     padding-left: 12px;
+    position: relative;
+    cursor: pointer;;
 }
 .header__topbar__user>span{
 color: var(--background-color);
@@ -81,6 +83,51 @@ border-radius: 50%;
 .header__topbar__user>i{
     color: rgb(169, 163, 163);
     cursor: pointer;
+}
+.header__topbar__user:hover .header__topbar__user__detail{
+   display: block;
+}
+    
+.header__topbar__user__detail{
+   
+   width: 200px;
+   position: absolute;
+   background-color: var(--background-color);
+   left: 11px;
+   top: 35px;
+   border: 2px solid var(--primary-color);
+   border-radius: 5px;
+   padding: 0 10px;
+   z-index: 100;
+   display: none;
+   cursor: default;
+   
+}
+.header__topbar__user__list{
+   
+  padding: 10px;
+}
+.header__topbar__user__list>li
+{
+    color: white;
+   
+}
+.header__topbar__user__list>li:hover
+{
+    transform: translateX(10px);
+   
+}
+.header__topbar__user__list>li>span{
+    cursor: pointer;
+}
+
+.header__topbar__user__detail::after{
+    content: " ";
+    position: absolute;
+padding: 12px 98px;
+    left: 0;
+   top: -18px;
+    
 }
 @media (max-width:1200px){
     .m-4{

@@ -35,7 +35,12 @@ else {
     user.classList.add('hide')
 
 }
-
+const handleLogout = document.querySelector('.header__topbar__user__list')
+const logout = handleLogout.querySelector('.logout')
+logout.addEventListener('click', () => {
+    sessionStorage.setItem('login', 0)
+    location.reload()
+})
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -44,7 +49,7 @@ const database = getDatabase(app);
 const auth = getAuth()
 
 
-// var repassword= document.querySelector('.repassword')
+// Sign up
 const signUpform = document.querySelector('.registerform')
 const signUp = signUpform.querySelector('.btn_signup')
 signUp.addEventListener('click', () => {
@@ -65,6 +70,7 @@ signUp.addEventListener('click', () => {
             signUpform.querySelector('.password').value = ''
 
             alert('Created')
+            location.reload()
             // ...
         })
         .catch((error) => {
@@ -97,7 +103,6 @@ signIn.addEventListener('click', () => {
             sessionStorage.setItem('login', 1)
             localStorage.setItem('email', email)
 
-            alert('Loged in')
             location.reload()
             // ...
         })
