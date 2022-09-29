@@ -81,8 +81,105 @@
 
             </div>
         </div>
-
         <!-- END-MENUHIDE -->
+        <!-- RegisterForm -->
+        <div class="modal registerform hideModal">
+            <div class="modal_background">
+            </div>
+            <div class="modal_body">
+
+                <div class="auth-form">
+                    <div class="auth-form_container">
+                        <div class="auth-from_header">
+                            <h3 class="auth-form_register">Sign up</h3>
+                            <span class="auth-form_switch">Sign in</span>
+                        </div>
+                        <div class="auth-form_form">
+                            <div class="auth-form_group">
+                                <input type="text" name="username" class="auth-form_input username"
+                                    placeholder="Your user name">
+                            </div>
+                            <div class="auth-form_group">
+                                <input type="email" name="email" class="auth-form_input email" placeholder="Your email">
+                            </div>
+                            <div class="auth-form_group">
+                                <input type="password" name="password" class="auth-form_input password"
+                                    placeholder="Your password">
+                            </div>
+
+                        </div>
+
+                        <div class="auth-form_controls">
+                            <a href="./index.html" class="btn btn_back">Go Back</a>
+                            <button class="btn btn_primary btn_signup">Sign up</button>
+                        </div>
+                    </div>
+
+                    <div class="auth-form_social">
+                        <a href="" class="btn btn-with_iconfacebook">
+                            <i class="fa-brands fa-facebook"></i>
+                            <span class="auth-form_social__text">
+                                Connect with Facebook
+                            </span></a>
+                        <a href="" class="btn btn-with_icongoogle">
+                            <span class="google-icon__modifiel">
+                                <img class="google_icon" src="./asserts/img/googleicon.png">
+
+                            </span> <span class="auth-form_social__text">
+                                Connect with Google
+                            </span></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- LoginForm -->
+        <div class="modal loginform hideModal">
+            <div class="modal_background">
+            </div>
+            <div class="modal_body">
+
+                <div class="auth-form">
+                    <div class="auth-form_container">
+                        <div class="auth-from_header">
+                            <h3 class="auth-form_register">Sign in</h3>
+                            <span class="auth-form_switch">Sign up</span>
+                        </div>
+                        <div class="auth-form_form">
+
+                            <div class="auth-form_group">
+                                <input type="email" class="auth-form_input email" placeholder="Your email">
+                            </div>
+                            <div class="auth-form_group">
+                                <input type="password" class="auth-form_input password" placeholder="Your password">
+                            </div>
+
+                        </div>
+
+                        <div class="auth-form_controls">
+                            <a href="./index.html" class="btn btn_back">Go Back</a>
+                            <button class="btn btn_primary btn_signin">Sign in</button>
+                        </div>
+                    </div>
+
+                    <div class="auth-form_social">
+                        <a href="" class="btn btn-with_iconfacebook">
+                            <i class="fa-brands fa-facebook"></i>
+                            <span class="auth-form_social__text">
+                                Connect with Facebook
+                            </span></a>
+                        <a href="" class="btn btn-with_icongoogle">
+                            <span class="google-icon__modifiel">
+                                <img class="google_icon" src="./asserts/img/googleicon.png">
+
+                            </span> <span class="auth-form_social__text">
+                                Connect with Google
+                            </span></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
         <!-- HEADER -->
         <div class="header">
             <div class="grid wide">
@@ -99,9 +196,14 @@
 
 
                     </div>
-                    <!-- <div class="header__topbar__offer">
-                        <span>Big offer</span>
-                    </div> -->
+                    <div class="header__topbar__account hide">
+                        <button onclick="showSingupForm();" class="header__topbar__btn  ">Sign Up</button>
+                        <button onclick="showSinginForm();" class="header__topbar__btn  ">Sign In</button>
+                    </div>
+                    <div class="header__topbar__user hide">
+                        <span><i class="fa-solid fa-user "></i></span>
+                        <i class="fa-solid fa-caret-down"></i>
+                    </div>
                     <div class="header__topbar__icon">
                         <i class="fa-brands fa-facebook"></i>
                         <i class="fa-brands fa-instagram"></i>
@@ -502,6 +604,8 @@
     </script>
 
     <script src="./index.js"></script>
+    <script type="module" src="./accout.js"></script>
+
 
 </body>
 

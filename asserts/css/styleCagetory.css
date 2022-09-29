@@ -48,6 +48,22 @@ align-items: center;
     color: white;
     font-weight: 600;
 }
+.header__topbar__account{
+    padding-left: 12px;
+    }
+    .header__topbar__btn{
+        
+        background-color: var(--primary-color);
+        border-color: transparent;
+       border-radius: 6px;
+       padding: 2px 5px;
+       cursor: pointer;
+    }
+    .header__topbar__btn:hover{
+        border: 1px solid var(--primary-color);
+        background-color: var(--background-color);
+        color: white;
+    }
 .header__topbar__icon{
 display: flex;
 justify-content: space-between;

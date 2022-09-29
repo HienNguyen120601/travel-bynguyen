@@ -93,7 +93,9 @@ font-size: 20px;
 .footer__content__follow{
     text-align: center;
 }
-
+.header__topbar__icon{
+justify-content: space-evenly;
+}
 }
 @media (max-width:630px)
 {
@@ -121,9 +123,21 @@ font-size: 14px;
 .top__banner__right__btn{
     bottom: 10%;
 }
+.auth-form{
+    width: 400px
+}
+.auth-form_social__text{
+    font-size: 10px;
+}
 }
 @media (max-width:480px)
 {
+    .auth-form{
+        width: 350px
+    }
+    .auth-form_social__text{
+        display: none;
+    }
     .tour__booking{
         width: 90%;
     }
@@ -159,6 +173,9 @@ font-size: 12px;
 }
 }
 @media (max-width:360px){
+    .auth-form{
+        width: 280px;
+    }
     .nav__bar__menuhide{
         width: 70%;
     }

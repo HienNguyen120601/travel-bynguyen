@@ -40,7 +40,30 @@ function showMenu() {
     }
 
 }
+function showSingupForm() {
 
+    const registerform = document.querySelector('.registerform')
+    registerform.classList.remove('hideModal')
+    registerform.classList.add('showModal')
+    const modalBg = registerform.querySelector('.modal_background')
+    modalBg.addEventListener('click', function () {
+        registerform.classList.remove('showModal')
+        registerform.classList.add('hideModal')
+    })
+
+}
+function showSinginForm() {
+
+    const login = document.querySelector('.loginform')
+    login.classList.remove('hideModal')
+    login.classList.add('showModal')
+    const modalBg = login.querySelector('.modal_background')
+    modalBg.addEventListener('click', function () {
+        login.classList.remove('showModal')
+        login.classList.add('hideModal')
+    })
+
+}
 function onLoad() {
     getTours(function (tours) {
         renderTour(tours)
@@ -57,7 +80,7 @@ function getTours(callback) {
         })
 }
 function renderTour(tours) {
-    console.log(tours)
+
     var tourBlock = document.querySelector('.container')
     var tourPackage = tourBlock.querySelector('.row')
 
