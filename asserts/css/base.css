@@ -68,6 +68,9 @@ max-width: 66.6666%;
     color: white;
     
 }
+.header__topbar__user{
+    padding-left: 12px;
+}
 .header__topbar__user>span{
 color: var(--background-color);
 background-color: rgb(169, 163, 163);
