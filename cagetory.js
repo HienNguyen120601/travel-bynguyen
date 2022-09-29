@@ -125,6 +125,11 @@ function renderTour(tours, id = 1) {
 
 }
 function showResult() {
+    var islogin = sessionStorage.getItem('login')
+    if (islogin != 1) {
+        alert('You can log in before booking')
+        return;
+    }
     const main = document.getElementById('toast');
     let booking = document.querySelector('.tour__booking__group')
     let name = booking.querySelector('.tour__booking__name')
