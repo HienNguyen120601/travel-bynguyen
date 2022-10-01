@@ -444,6 +444,8 @@ z-index: 2;
     background-color: var(--primary-color);
     color: white;
 }
+
+
 #toast{
     position: fixed;
     top:30px;
@@ -571,7 +573,7 @@ border: 2px solid #fff3f1;
 margin-top: 20px;
 border-radius: 5px;
 position: relative;
-z-index: 100;
+z-index: 1;
 }
 .tour__booking__title{
 height: 55px;

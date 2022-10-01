@@ -38,7 +38,9 @@ else {
 const handleLogout = document.querySelector('.header__topbar__user__list')
 const logout = handleLogout.querySelector('.logout')
 logout.addEventListener('click', () => {
-    sessionStorage.setItem('login', 0)
+    sessionStorage.clear()
+
+    // sessionStorage.setItem('login', 0)
     location.reload()
 })
 
@@ -52,11 +54,17 @@ const auth = getAuth()
 // Sign up
 const signUpform = document.querySelector('.registerform')
 const signUp = signUpform.querySelector('.btn_signup')
+const apiUser = 'https://632d7be60d7928c7d24c1655.mockapi.io/User'
+
 signUp.addEventListener('click', () => {
     var username = signUpform.querySelector('.username').value
     var email = signUpform.querySelector('.email').value
     var password = signUpform.querySelector('.password').value
-
+    var data = {
+        username: username,
+        email: email,
+        password: password
+    }
     createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             // Signed in 
@@ -65,10 +73,22 @@ signUp.addEventListener('click', () => {
                 username: username,
                 email: email
             })
+
+            fetch(apiUser, {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(data)
+
+            })
+                .then(function (reponse) {
+                    reponse.json()
+                })
+                .then()
             signUpform.querySelector('.username').value = ''
             signUpform.querySelector('.email').value = ''
             signUpform.querySelector('.password').value = ''
-
             alert('Created')
             location.reload()
             // ...
@@ -101,8 +121,7 @@ signIn.addEventListener('click', () => {
             signInform.querySelector('.email').value = ''
             signInform.querySelector('.password').value = ''
             sessionStorage.setItem('login', 1)
-            localStorage.setItem('email', email)
-
+            sessionStorage.setItem('email', email)
             location.reload()
             // ...
         })

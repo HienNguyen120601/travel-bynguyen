@@ -1,7 +1,8 @@
 
 var cagetory = document.querySelector('.cagetory__wrap')
 var apiTour = 'https://632d7be60d7928c7d24c1655.mockapi.io/Tour'
-
+var apiOrder = 'https://632d7be60d7928c7d24c1655.mockapi.io/Order'
+var tourTitle
 function showCagetory() {
 
     if (cagetory) {
@@ -117,7 +118,81 @@ function showTourDetail(booking) {
     console.log(id)
     localStorage.setItem("detail", id)
 }
+function getOrder(callback) {
+    fetch(apiOrder).then(function (reponse) {
+        return reponse.json()
+    })
+        .then(callback)
+        .catch(function () {
+            alert("Có lỗi vui lòng reload")
+        })
+}
 
+function renderOrder() {
+    const userEmail = sessionStorage.getItem('email')
+    const order = document.querySelector('.order')
+    order.classList.remove('hideModal')
+    const modal_background = order.querySelector('.modal_background')
+    modal_background.addEventListener('click', () => {
+        order.classList.add('hideModal')
+    })
+    const orderList = order.querySelector('.modal_body_order')
+    getUser(function (users) {
+        const userLogin = users.filter((user) => {
+
+            return user.email == userEmail
+        })
+        getOrder(function (orders) {
+            const tourOrders = orders.filter((order) => {
+                return order.user_id == userLogin[0].id
+            })
+
+            const htmls = tourOrders.map((tourOrder) => {
+                getTours(function (tours) {
+                    const userTourBooked = tours.filter((tour) => {
+                        return tour.id == tourOrder.tour_id
+                    })
+                    tourTitle = userTourBooked.map((tour) => {
+                        return tour.title
+                    })
+
+                })
+                return `<ul class="order__list">          
+                <li class="order__item">
+                        ${tourOrder.id}
+                        </li>
+                        <li class="order__item">
+                        ${tourOrder.fullname}
+                        </li>
+                        <li class="order__item">
+                        ${tourOrder.phonenumber}
+                        </li>
+                        
+                        <li class="order__item">
+                        ${tourOrder.message}
+                        </li>
+                        <li class="order__item">
+                        ${tourOrder.tour_id}
+                        </li>
+                        <li class="order__item">
+                        ${tourOrder.date}
+                        </li>
+                        </ul>`
+            })
+
+            orderList.innerHTML = `<div class="order__label">
+            <span>ID</span>
+            <span>Fullname</span>
+            <span>PhoneNumber</span>
+            <span>Message</span>
+            <span>TourID</span>
+            <span>Date</span>
+        </div>`+ htmls.join('')
+        })
+    })
+
+
+}
 onLoad()
 
 

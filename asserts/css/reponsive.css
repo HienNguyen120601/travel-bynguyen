@@ -99,6 +99,25 @@ justify-content: space-evenly;
 }
 @media (max-width:630px)
 {
+    
+    .order__label>span{
+        
+        font-size: 14px;
+        overflow: hidden;
+        text-overflow: ellipsis;       
+       
+    }
+    .order__label>span:hover{
+        overflow: visible;
+    }
+    .order__list{
+        font-size: 14px;
+        
+    }
+    .order__list>li{
+        overflow: hidden;
+        text-overflow: ellipsis;    
+    }
     .tour__booking{
         width: 90%;
     }
