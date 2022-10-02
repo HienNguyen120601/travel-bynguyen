@@ -2,6 +2,8 @@
 var cagetory = document.querySelector('.cagetory__wrap')
 var apiTour = 'https://632d7be60d7928c7d24c1655.mockapi.io/Tour'
 var apiOrder = 'https://632d7be60d7928c7d24c1655.mockapi.io/Order'
+var apiUser = 'https://632d7be60d7928c7d24c1655.mockapi.io/User'
+
 var tourTitle
 function showCagetory() {
 
@@ -77,7 +79,15 @@ function getTourbyNumber() {
 function onLoad() {
     getTourbyNumber()
 }
-
+function getUser(callback) {
+    fetch(apiUser).then(function (reponse) {
+        return reponse.json()
+    })
+        .then(callback)
+        .catch(function () {
+            alert("Có lỗi vui lòng reload")
+        })
+}
 function getTours(callback) {
     fetch(apiTour).then(function (reponse) {
         return reponse.json()
@@ -165,9 +175,7 @@ function renderOrder() {
 
                 })
                 return `<ul class="order__list">          
-                <li class="order__item">
-                        ${tourOrder.id}
-                        </li>
+                
                         <li class="order__item">
                         ${tourOrder.fullname}
                         </li>
@@ -188,7 +196,7 @@ function renderOrder() {
             })
 
             orderList.innerHTML = `<div class="order__label">
-            <span>ID</span>
+           
             <span>Fullname</span>
             <span>PhoneNumber</span>
             <span>Message</span>

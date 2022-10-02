@@ -131,9 +131,7 @@ function renderOrder() {
 
                 })
                 return `<ul class="order__list">          
-                <li class="order__item">
-                        ${tourOrder.id}
-                        </li>
+                
                         <li class="order__item">
                         ${tourOrder.fullname}
                         </li>
@@ -154,7 +152,7 @@ function renderOrder() {
             })
 
             orderList.innerHTML = `<div class="order__label">
-            <span>ID</span>
+           
             <span>Fullname</span>
             <span>PhoneNumber</span>
             <span>Message</span>

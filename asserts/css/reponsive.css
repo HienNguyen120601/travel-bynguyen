@@ -116,7 +116,11 @@ justify-content: space-evenly;
     }
     .order__list>li{
         overflow: hidden;
-        text-overflow: ellipsis;    
+        text-overflow: ellipsis; 
+       
+    }
+    .order__list>li:hover{
+        overflow: visible;
     }
     .tour__booking{
         width: 90%;
