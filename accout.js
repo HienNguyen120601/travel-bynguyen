@@ -18,6 +18,10 @@ const firebaseConfig = {
     appId: "1:157649672876:web:a5287e61e2f2a124f95d09",
     measurementId: "G-LEB7S5JC19"
 };
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+const database = getDatabase(app);
+const auth = getAuth()
 
 var islogin = sessionStorage.getItem('login')
 if (islogin == 1) {
@@ -45,29 +49,67 @@ logout.addEventListener('click', () => {
 })
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-const database = getDatabase(app);
-const auth = getAuth()
 
+function getUser(callback) {
+    fetch(apiUser).then(function (reponse) {
+        return reponse.json()
+    })
+        .then(callback)
+        .catch(function () {
+            alert("Có lỗi vui lòng reload")
+        })
+}
 
 // Sign up
 const signUpform = document.querySelector('.registerform')
+const formGroup = signUpform.querySelector('.auth-form')
 const signUp = signUpform.querySelector('.btn_signup')
-const apiUser = 'https://632d7be60d7928c7d24c1655.mockapi.io/User'
-
+const apiUser = 'https://travel-api-hiennguyen.herokuapp.com/api/customer'
+var nameRegex = /^[a-zA-Z0-9\-]+$/;
+var emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
 signUp.addEventListener('click', () => {
-    var username = signUpform.querySelector('.username').value
-    var email = signUpform.querySelector('.email').value
-    var password = signUpform.querySelector('.password').value
+    const username = signUpform.querySelector('.username').value
+    const email = signUpform.querySelector('.email').value
+    const password = signUpform.querySelector('.password').value
+    if (nameRegex.test(username) == false) {
+        formGroup.querySelector('.messageUsername').innerText = 'User name không hợp lệ'
+        return
+    }
+    else {
+        formGroup.querySelector('.messageUsername').innerText = ''
+    }
+    if (emailRegex.test(email) == false) {
+        formGroup.querySelector('.messageEmail').innerText = 'Email không hợp lệ'
+        return
+    }
+    else {
+        formGroup.querySelector('.messageEmail').innerText = ''
+    }
+    if (nameRegex.test(password) == false) {
+        formGroup.querySelector('.messagePasswork').innerText = 'Password không hợp lệ'
+        return
+    }
+    else {
+        formGroup.querySelector('.messagePasswork').innerText = ''
+
+    }
+
     var data = {
         username: username,
         email: email,
-        password: password
+        password: password,
+        block: 0
     }
+    getUser(function (users) {
+        users.map((user) => {
+
+            if (user.email == email)
+                formGroup.querySelector('.messageEmail').innerText = 'Email đã tồn tại'
+        })
+    })
     createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-            // Signed in 
+            // Signed up 
             const user = userCredential.user;
             set(ref(database, 'user/' + user.uid), {
                 username: username,
@@ -97,27 +139,53 @@ signUp.addEventListener('click', () => {
             const errorCode = error.code;
             const errorMessage = error.message;
             // ..
-            alert(errorMessage + 'Code:' + errorCode)
+
         });
 })
 const signInform = document.querySelector('.loginform')
 const signIn = signInform.querySelector('.btn_signin')
+const formLogin = signInform.querySelector('.auth-form')
 signIn.addEventListener('click', () => {
 
-    var email = signInform.querySelector('.email').value
-    var password = signInform.querySelector('.password').value
+    const email = signInform.querySelector('.email').value
 
+    const password = signInform.querySelector('.password').value
 
+    getUser(function (users) {
+        if (!users[0]) {
+            formLogin.querySelector('.messageEmail').innerText = 'Email không tồn tại'
+        }
+        else {
+            users.map((user) => {
+                if (user.email != email) {
+                    formLogin.querySelector('.messageEmail').innerText = 'Email không tồn tại'
+                }
+                else {
+                    formLogin.querySelector('.messageEmail').innerText = ''
+                }
+                if (user.password == password) {
+                    formLogin.querySelector('.messagePassword').innerText = ''
+                }
+                else {
+                    formLogin.querySelector('.messagePassword').innerText = 'Vui lòng kiểm tra lại mật khẩu'
+                }
+                if (user.email == email && user.password == password) {
+                    if (user.block == 1) {
+                        location.reload()
+                        alert("Tài khoản của bạn đã bị khóa vui lòng liên hệ quản trị viên")
+                    }
+                }
+            })
+        }
+    })
     signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             // Signed in 
-
             const user = userCredential.user;
             let dt = new Date()
             update(ref(database, 'user/' + user.uid), {
                 last_login: dt
             })
-
             signInform.querySelector('.email').value = ''
             signInform.querySelector('.password').value = ''
             sessionStorage.setItem('login', 1)
@@ -128,7 +196,6 @@ signIn.addEventListener('click', () => {
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            alert(errorMessage + 'Code:' + errorCode)
         });
 }
 )

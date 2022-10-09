@@ -24,6 +24,17 @@
 
 <body>
     <div class="app">
+        <!-- ShowAdmin -->
+
+
+        <div class="showDetail">
+            <div class="showdetail__btn">
+                <i onclick="showAdmin();" class="fa-solid fa-angles-right"></i>
+            </div>
+            <button onclick="window.location='./adminpage/login.html'">Admin</button>
+
+        </div>
+
         <!-- MENU--HIDE -->
         <div class="menuhide">
             <div class="menuhide__wrap">
@@ -97,13 +108,16 @@
                             <div class="auth-form_group">
                                 <input type="text" name="username" class="auth-form_input username"
                                     placeholder="Your user name">
+                                <span class="message messageUsername"></span>
                             </div>
                             <div class="auth-form_group">
                                 <input type="email" name="email" class="auth-form_input email" placeholder="Your email">
+                                <span class="message messageEmail"></span>
                             </div>
                             <div class="auth-form_group">
                                 <input type="password" name="password" class="auth-form_input password"
                                     placeholder="Your password">
+                                <span class="message messagePasswork"></span>
                             </div>
 
                         </div>
@@ -111,6 +125,55 @@
                         <div class="auth-form_controls">
                             <a href="./index.html" class="btn btn_back">Go Back</a>
                             <button class="btn btn_primary btn_signup">Sign up</button>
+                        </div>
+                    </div>
+
+                    <div class="auth-form_social">
+                        <a href="" class="btn btn-with_iconfacebook">
+                            <i class="fa-brands fa-facebook"></i>
+                            <span class="auth-form_social__text">
+                                Connect with Facebook
+                            </span></a>
+                        <a href="" class="btn btn-with_icongoogle">
+                            <span class="google-icon__modifiel">
+                                <img class="google_icon" src="./asserts/img/googleicon.png">
+
+                            </span> <span class="auth-form_social__text">
+                                Connect with Google
+                            </span></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- LoginForm -->
+        <div class="modal loginform hideModal">
+            <div class="modal_background">
+            </div>
+            <div class="modal_body">
+
+                <div class="auth-form">
+                    <div class="auth-form_container">
+                        <div class="auth-from_header">
+                            <h3 class="auth-form_register">Sign in</h3>
+                            <span class="auth-form_switch">Sign up</span>
+                        </div>
+                        <div class="auth-form_form">
+
+                            <div class="auth-form_group">
+                                <input type="email" class="auth-form_input email" placeholder="Your email">
+                                <span class="messageEmail"></span>
+                            </div>
+                            <div class="auth-form_group">
+                                <input type="password" class="auth-form_input password" placeholder="Your password">
+                                <span class="messagePassword"></span>
+                            </div>
+
+                        </div>
+
+                        <div class="auth-form_controls">
+                            <a href="./index.html" class="btn btn_back">Go Back</a>
+                            <button class="btn btn_primary btn_signin">Sign in</button>
                         </div>
                     </div>
 
@@ -142,53 +205,7 @@
 
             </div>
         </div>
-        <!-- LoginForm -->
-        <div class="modal loginform hideModal">
-            <div class="modal_background">
-            </div>
-            <div class="modal_body">
 
-                <div class="auth-form">
-                    <div class="auth-form_container">
-                        <div class="auth-from_header">
-                            <h3 class="auth-form_register">Sign in</h3>
-                            <span class="auth-form_switch">Sign up</span>
-                        </div>
-                        <div class="auth-form_form">
-
-                            <div class="auth-form_group">
-                                <input type="email" class="auth-form_input email" placeholder="Your email">
-                            </div>
-                            <div class="auth-form_group">
-                                <input type="password" class="auth-form_input password" placeholder="Your password">
-                            </div>
-
-                        </div>
-
-                        <div class="auth-form_controls">
-                            <a href="./index.html" class="btn btn_back">Go Back</a>
-                            <button class="btn btn_primary btn_signin">Sign in</button>
-                        </div>
-                    </div>
-
-                    <div class="auth-form_social">
-                        <a href="" class="btn btn-with_iconfacebook">
-                            <i class="fa-brands fa-facebook"></i>
-                            <span class="auth-form_social__text">
-                                Connect with Facebook
-                            </span></a>
-                        <a href="" class="btn btn-with_icongoogle">
-                            <span class="google-icon__modifiel">
-                                <img class="google_icon" src="./asserts/img/googleicon.png">
-
-                            </span> <span class="auth-form_social__text">
-                                Connect with Google
-                            </span></a>
-                    </div>
-                </div>
-
-            </div>
-        </div>
         <!-- HEADER -->
         <div class="header">
             <div class="grid wide">

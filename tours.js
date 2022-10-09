@@ -1,10 +1,23 @@
 
 var cagetory = document.querySelector('.cagetory__wrap')
-var apiTour = 'https://632d7be60d7928c7d24c1655.mockapi.io/Tour'
+var apiTour = 'https://travel-api-hiennguyen.herokuapp.com/api/tour'
+var apiUser = 'https://travel-api-hiennguyen.herokuapp.com/api/customer'
 var apiOrder = 'https://632d7be60d7928c7d24c1655.mockapi.io/Order'
-var apiUser = 'https://632d7be60d7928c7d24c1655.mockapi.io/User'
+
 
 var tourTitle
+function showAdmin() {
+    const adminbtn = document.querySelector('.showDetail')
+    const btnShow = adminbtn.querySelector('.showdetail__btn')
+    adminbtn.classList.add('showadmin')
+    btnShow.innerHTML = `<i onclick="closeAdmin();" class="fa-solid fa-angles-left"></i>`
+}
+function closeAdmin() {
+    const adminbtn = document.querySelector('.showDetail')
+    const btnShow = adminbtn.querySelector('.showdetail__btn')
+    adminbtn.classList.remove('showadmin')
+    btnShow.innerHTML = `<i onclick="showAdmin();" class="fa-solid fa-angles-right"></i>`
+}
 function showCagetory() {
 
     if (cagetory) {
@@ -68,6 +81,7 @@ function showSinginForm() {
 
 }
 function onLoad() {
+
     getTours(function (tours) {
         renderTour(tours)
     })
@@ -101,14 +115,14 @@ function renderTour(tours) {
         return `
         <div class="container__package col l-4 ms-6 s-12 ">
                     <div class="container__package__img">
-                    <img src="./asserts/img/travel/${tour.img}" data-id="${tour.id}" onclick="showTourDetail(this);">
-                        <div class="container__package__day"><span>${tour.numberofday}</span></div>
+                    <img src="./asserts/img/travel/${tour.img}" data-id="${tour._id}" onclick="showTourDetail(this);">
+                        <div class="container__package__day"><span>${tour.numberOfDay}</span></div>
                     </div>
-                    <a onclick="showTourDetail(this);"  class="container__package__detail" data-id="${tour.id}">
+                    <a onclick="showTourDetail(this);"  class="container__package__detail" data-id="${tour._id}">
                         ${tour.title}
                     </a>
                     <div class="container__package__footer">
-                        <button onclick="showTourDetail(this);" data-id="${tour.id}" class="container__package__book">
+                        <button onclick="showTourDetail(this);" data-id="${tour._id}" class="container__package__book">
                       BOOK NOW
                         </button>
                         <div class="container__package__price">From</br>

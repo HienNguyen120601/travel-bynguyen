@@ -1,0 +1,66 @@
+:root {
+    --primary-color   : #ff4838;
+    --text-color      : #333;
+    --background-color: #2d373c;
+    --white-color     : #fff;
+}
+
+body {
+    padding         : 0;
+    margin          : 0;
+    background-color: #f0f0f1;
+}
+
+.loginform {
+    width : 318px;
+    margin: 100px auto;
+
+
+}
+
+.formlogo {
+    width: 100%;
+
+}
+
+.formlogo>img {
+    width     : 100%;
+    object-fit: cover;
+}
+
+.formgroup {
+    width           : 318px;
+    background-color: white;
+    display         : flex;
+    flex-direction  : column;
+    padding         : 30px 25px;
+    border-radius   : 5px;
+}
+
+.formgroup>input {
+    margin-bottom: 20px;
+    margin-top   : 5px;
+    height       : 40px;
+    border-radius: 5px;
+    outline-color: var(--primary-color);
+}
+
+
+
+.loginbtn {
+    max-width       : 95px;
+    height          : 40px;
+    background-color: var(--primary-color);
+    border          : none;
+    border-radius   : 5px;
+    cursor          : pointer;
+    color           : white;
+}
+
+.loginbtn:hover {
+    background-color: var(--background-color);
+    color           : var(--primary-color);
+
+
+
+}

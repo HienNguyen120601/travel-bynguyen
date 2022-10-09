@@ -24,6 +24,16 @@
 
 <body>
     <div class="app">
+        <!-- ShowAdmin -->
+        <div class="showDetail showadmin">
+            <div class="showdetail__btn">
+                <i onclick="closeAdmin();" class="fa-solid fa-angles-left"></i>
+            </div>
+            <button onclick="window.location='./adminpage/login.html'">Admin</button>
+
+        </div>
+
+
         <!-- MENU--HIDE -->
         <div class="menuhide">
             <div class="menuhide__wrap">
@@ -98,13 +108,16 @@
                             <div class="auth-form_group">
                                 <input type="text" name="username" class="auth-form_input username"
                                     placeholder="Your user name">
+                                <span class="message messageUsername"></span>
                             </div>
                             <div class="auth-form_group">
                                 <input type="email" name="email" class="auth-form_input email" placeholder="Your email">
+                                <span class="message messageEmail"></span>
                             </div>
                             <div class="auth-form_group">
                                 <input type="password" name="password" class="auth-form_input password"
                                     placeholder="Your password">
+                                <span class="message messagePasswork"></span>
                             </div>
 
                         </div>
@@ -149,9 +162,11 @@
 
                             <div class="auth-form_group">
                                 <input type="email" class="auth-form_input email" placeholder="Your email">
+                                <span class="messageEmail"></span>
                             </div>
                             <div class="auth-form_group">
                                 <input type="password" class="auth-form_input password" placeholder="Your password">
+                                <span class="messagePassword"></span>
                             </div>
 
                         </div>

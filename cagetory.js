@@ -1,9 +1,21 @@
 
 var cagetory = document.querySelector('.cagetory__wrap')
-var apiTour = 'https://632d7be60d7928c7d24c1655.mockapi.io/Tour'
-var apiUser = 'https://632d7be60d7928c7d24c1655.mockapi.io/User'
+var apiTour = 'https://travel-api-hiennguyen.herokuapp.com/api/tour'
+var apiUser = 'https://travel-api-hiennguyen.herokuapp.com/api/customer'
 var apiOrder = 'https://632d7be60d7928c7d24c1655.mockapi.io/Order'
 var tourTitle
+function showAdmin() {
+    const adminbtn = document.querySelector('.showDetail')
+    const btnShow = adminbtn.querySelector('.showdetail__btn')
+    adminbtn.classList.add('showadmin')
+    btnShow.innerHTML = `<i onclick="closeAdmin();" class="fa-solid fa-angles-left"></i>`
+}
+function closeAdmin() {
+    const adminbtn = document.querySelector('.showDetail')
+    const btnShow = adminbtn.querySelector('.showdetail__btn')
+    adminbtn.classList.remove('showadmin')
+    btnShow.innerHTML = `<i onclick="showAdmin();" class="fa-solid fa-angles-right"></i>`
+}
 function showCagetory() {
 
     if (cagetory) {
@@ -282,7 +294,7 @@ function renderTour(tours, id = 1) {
     var tourPackage = tourBlock.querySelector('.row')
 
     var htmls = tours.map(function (tour) {
-        if (tour.id == id)
+        if (tour._id == id)
             return `
         <div class="tour__detail">
                     <div class="tour__package">
