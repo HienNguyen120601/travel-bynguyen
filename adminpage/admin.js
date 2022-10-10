@@ -169,11 +169,21 @@ function renderTour() {
 
     const header = document.querySelector('.content__header')
     sessionStorage.setItem('render', 'tour')
+    const service = document.querySelector('.content__service')
     header.innerHTML =
         `
     <span id="title">Quản trị sản phẩm</span>
                 <i class="fa-solid fa-chevron-right"></i>
                 <span id='product'>Sản phẩm</span>
+    `
+    service.innerHTML =
+        `
+        <div class="service__search">
+        <input type="text" placeholder="Nhập tên tour" class="service__input">
+        <i class="fa-solid fa-magnifying-glass" onclick="search();"></i>
+    </div>
+
+    <button class="service__addtour">Thêm mới</button>
     `
     const contentProduct = document.querySelector('.content__product')
     contentProduct.innerHTML = `<span class="product__label">STT</span>
@@ -209,12 +219,22 @@ function renderTour() {
 }
 function renderCustormer() {
     const header = document.querySelector('.content__header')
+    const service = document.querySelector('.content__service')
     sessionStorage.setItem('render', 'customer')
     header.innerHTML =
         `
     <span id="title">Quản trị sản phẩm</span>
                 <i class="fa-solid fa-chevron-right"></i>
                 <span id='product'>Khách hàng</span>
+    `
+    service.innerHTML =
+        `
+        <div class="service__search">
+        <input type="text" placeholder="Nhập tên tour" class="service__input">
+        <i class="fa-solid fa-magnifying-glass" onclick="search();"></i>
+    </div>
+
+   
     `
     const contentProduct = document.querySelector('.content__product')
     contentProduct.innerHTML = `
