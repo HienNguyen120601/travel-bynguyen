@@ -280,14 +280,14 @@ function search() {
             return tour.title.search(input) != -1
         })
         const htmls = tourByTitle.map((tour, index) => {
-            return `<div class="content__item">
-        <span>${index + 1}</span>
-        <span>${tour.title}</span>
-        <span>${tour.price}</span>
-        <span>${tour.numberOfDay}</span>
-        <span>${tour.description}</span>
-        <span>${tour.img}</span>
-        <span>
+            return `<div class="product__item">
+        <span class="product__content">${index + 1}</span>
+        <span class="product__content">${tour.title}</span>
+        <span class="product__content">${tour.price}</span>
+        <span class="product__content">${tour.numberOfDay}</span>
+        <span class="product__content">${tour.description}</span>
+        <span class="product__content">${tour.img}</span>
+        <span class="product__content">
         <i class="fa-solid fa-circle-xmark"></i>
         <i class="fa-solid fa-pen"></i>
         </span>
