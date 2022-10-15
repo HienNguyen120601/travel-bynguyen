@@ -56,7 +56,7 @@ function getUser(callback) {
     })
         .then(callback)
         .catch(function () {
-            alert("Có lỗi vui lòng reload")
+
         })
 }
 
@@ -156,26 +156,28 @@ signIn.addEventListener('click', () => {
             formLogin.querySelector('.messageEmail').innerText = 'Email không tồn tại'
         }
         else {
-            users.map((user) => {
-                if (user.email != email) {
-                    formLogin.querySelector('.messageEmail').innerText = 'Email không tồn tại'
-                }
-                else {
-                    formLogin.querySelector('.messageEmail').innerText = ''
-                }
-                if (user.password == password) {
-                    formLogin.querySelector('.messagePassword').innerText = ''
-                }
-                else {
-                    formLogin.querySelector('.messagePassword').innerText = 'Vui lòng kiểm tra lại mật khẩu'
-                }
-                if (user.email == email && user.password == password) {
-                    if (user.block == 1) {
-                        location.reload()
-                        alert("Tài khoản của bạn đã bị khóa vui lòng liên hệ quản trị viên")
-                    }
-                }
+
+            const findEmail = users.filter((user) => {
+                return user.email == email
             })
+            if (!findEmail[0]) {
+                formLogin.querySelector('.messageEmail').innerText = 'Email không tồn tại'
+            }
+            else {
+                formLogin.querySelector('.messageEmail').innerText = ''
+            }
+
+            if (findEmail[0].password == password)
+                formLogin.querySelector('.messagePassword').innerText = ''
+            else
+                formLogin.querySelector('.messagePassword').innerText = 'Vui lòng kiểm tra lại mật khẩu'
+            if (findEmail[0].email == email && findEmail[0].password == password) {
+                if (findEmail[0].block == 1) {
+                    location.reload()
+                    alert("Tài khoản của bạn đã bị khóa vui lòng liên hệ quản trị viên")
+                }
+            }
+
         }
     })
     signInWithEmailAndPassword(auth, email, password)

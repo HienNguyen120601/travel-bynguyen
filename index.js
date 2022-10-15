@@ -35,7 +35,25 @@ function closeCagetory() {
 
     }
 }
+function showSearchBox() {
+    const navbar = document.querySelector('.nav__bar')
+    const search__box = navbar.querySelector('.search__box')
 
+    search__box.classList.add('showSearchBar')
+}
+function closeSearchBox() {
+    const navbar = document.querySelector('.nav__bar')
+    const search__box = navbar.querySelector('.search__box')
+    search__box.classList.remove('showSearchBar')
+}
+function showResultSearch() {
+    const resultSearch = document.querySelector('.result__search')
+    resultSearch.classList.remove('hideResult__search')
+}
+function closeResultSearch() {
+    const resultSearch = document.querySelector('.result__search')
+    resultSearch.classList.add('hideResult__search')
+}
 function showMenu() {
     var menuHide = document.querySelector('.menuhide')
     var menuHideWrap = document.querySelector('.menuhide__wrap')
@@ -147,7 +165,6 @@ function renderTour(tours) {
     tourPackage.innerHTML = htmls.join('')
 
 }
-
 function showTourDetail(booking) {
     window.location = './cagetory.html'
 
@@ -164,7 +181,42 @@ function getOrder(callback) {
             alert("Có lỗi vui lòng reload")
         })
 }
-
+function searchTour() {
+    const searchBox = document.querySelector('.search__box')
+    const searchInput = searchBox.querySelector('.search__input').value
+    const resultBox = document.querySelector('.result__search')
+    const resulBody = resultBox.querySelector('.result__body')
+    if (searchInput == '') { }
+    else {
+        getTours(function (tours) {
+            const tourBySearch = tours.filter((tour) => {
+                return tour.title.search(searchInput) != -1
+            })
+            console.log(tourBySearch)
+            const htmls = tourBySearch.map((tour) => {
+                return `<div class="container__package result__style col l-4 ms-6 s-12 ">
+<div class="container__package__img">
+<img src="./asserts/img/travel/${tour.img}" data-id="${tour._id}" onclick="showTourDetail(this);">
+    <div class="container__package__day"><span>${tour.numberOfDay}</span></div>
+</div>
+<a onclick="showTourDetail(this);"  class="container__package__detail" data-id="${tour._id}">
+    ${tour.title}
+</a>
+<div class="container__package__footer">
+    <button onclick="showTourDetail(this);" data-id="${tour._id}" class="container__package__book">
+  BOOK NOW
+    </button>
+    <div class="container__package__price">From</br>
+        <span>${tour.price}</span>
+    </div>
+</div>
+</div>
+`
+            })
+            resulBody.innerHTML = htmls.join('')
+        })
+    }
+}
 function renderOrder() {
     const userEmail = sessionStorage.getItem('email')
     const order = document.querySelector('.order')

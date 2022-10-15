@@ -25,8 +25,6 @@
 <body>
     <div class="app">
         <!-- ShowAdmin -->
-
-
         <div class="showDetail">
             <div class="showdetail__btn">
                 <i onclick="showAdmin();" class="fa-solid fa-angles-right"></i>
@@ -34,7 +32,18 @@
             <button onclick="window.location='./adminpage/admin.html'">Admin</button>
 
         </div>
+        <!-- Show result search -->
+        <div class="result__search hideResult__search">
+            <span onclick="closeResultSearch();">
+                <i class="fa-regular fa-x"></i>
+            </span>
+            <div class="result__background">
 
+            </div>
+            <div class="result__body grid wide">
+
+            </div>
+        </div>
         <!-- MENU--HIDE -->
         <div class="menuhide">
             <div class="menuhide__wrap">
@@ -255,7 +264,15 @@
                 <img src="./asserts/img/logo3.png" alt="">
 
             </a>
-
+            <div class="search__box ">
+                <div class="search__box__body">
+                    <input class="search__input" type="text" name="" id="">
+                    <button onclick="showResultSearch();searchTour();">Find</button>
+                    <span onclick="closeSearchBox();">
+                        <i class="fa-regular fa-x"></i>
+                    </span>
+                </div>
+            </div>
             <div class="nav__bar__menu">
                 <ul class="nav__bar__menu__list">
                     <li class="nav__bar__menu__item col">
@@ -295,7 +312,7 @@
 
                 </span>
 
-                <span>
+                <span onclick="showSearchBox();">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </span>
                 <span class="menu__hide" onclick="showMenu();">
@@ -381,6 +398,8 @@
         <!-- CONTAINER -->
         <div class="container__detail grid wide">
             <div class="row">
+                <div class="tour__detail">
+                </div>
             </div>
             <div id="toast">
             </div>

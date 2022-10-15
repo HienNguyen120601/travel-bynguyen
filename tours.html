@@ -18,15 +18,16 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <link rel="stylesheet" href="./asserts/css/base.css">
     <link rel="stylesheet" href="./asserts/css/tours.css">
+
     <link rel="stylesheet" href="./asserts/css/reponsive.css">
     <link rel="shortcut icon" href="./asserts/img/favicon-32x32.png" type="image/x-icon">
 </head>
 
 <body>
     <div class="app">
+
+
         <!-- ShowAdmin -->
-
-
         <div class="showDetail">
             <div class="showdetail__btn">
                 <i onclick="showAdmin();" class="fa-solid fa-angles-right"></i>
@@ -34,7 +35,18 @@
             <button onclick="window.location='./adminpage/admin.html'">Admin</button>
 
         </div>
+        <!-- Show result search -->
+        <div class="result__search hideResult__search">
+            <span onclick="closeResultSearch();">
+                <i class="fa-regular fa-x"></i>
+            </span>
+            <div class="result__background">
 
+            </div>
+            <div class="result__body grid wide">
+
+            </div>
+        </div>
         <!-- MENU--HIDE -->
         <div class="menuhide">
             <div class="menuhide__wrap">
@@ -252,11 +264,17 @@
         <!-- NAV__BAR -->
         <div class="nav__bar grid wide">
             <a href="./index.html" class="nav__bar__logo">
-
                 <img src="./asserts/img/logo3.png" alt="">
-
             </a>
-
+            <div class="search__box ">
+                <div class="search__box__body">
+                    <input class="search__input" type="text" name="" id="">
+                    <button onclick="showResultSearch();searchTour();">Find</button>
+                    <span onclick="closeSearchBox();">
+                        <i class="fa-regular fa-x"></i>
+                    </span>
+                </div>
+            </div>
             <div class="nav__bar__menu">
                 <ul class="nav__bar__menu__list">
                     <li class="nav__bar__menu__item col">
@@ -293,10 +311,9 @@
             <div class="nav__bar__icon">
                 <span onclick="showCagetory();">
                     <i class="fa-solid fa-ellipsis"></i>
-
                 </span>
 
-                <span>
+                <span onclick="showSearchBox();">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </span>
                 <span class="menu__hide" onclick="showMenu();">

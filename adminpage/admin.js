@@ -230,7 +230,7 @@ function renderCustormer() {
     service.innerHTML =
         `
         <div class="service__search">
-        <input type="text" placeholder="Nhập tên tour" class="service__input">
+        <input type="text" placeholder="Nhập tên khách hàng" class="service__input">
         <i class="fa-solid fa-magnifying-glass" onclick="search();"></i>
     </div>
 

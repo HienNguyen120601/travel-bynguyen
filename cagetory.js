@@ -3,6 +3,7 @@ var cagetory = document.querySelector('.cagetory__wrap')
 var apiTour = 'https://travel-api-hiennguyen.herokuapp.com/api/tour'
 var apiUser = 'https://travel-api-hiennguyen.herokuapp.com/api/customer'
 var apiOrder = 'https://632d7be60d7928c7d24c1655.mockapi.io/Order'
+var apiOrderDetail = 'https://632d7be60d7928c7d24c1655.mockapi.io/Oder_detail'
 var tourTitle
 function showAdmin() {
     const adminbtn = document.querySelector('.showDetail')
@@ -33,7 +34,25 @@ function closeCagetory() {
 
     }
 }
+function showSearchBox() {
+    const navbar = document.querySelector('.nav__bar')
+    const search__box = navbar.querySelector('.search__box')
 
+    search__box.classList.add('showSearchBar')
+}
+function closeSearchBox() {
+    const navbar = document.querySelector('.nav__bar')
+    const search__box = navbar.querySelector('.search__box')
+    search__box.classList.remove('showSearchBar')
+}
+function showResultSearch() {
+    const resultSearch = document.querySelector('.result__search')
+    resultSearch.classList.remove('hideResult__search')
+}
+function closeResultSearch() {
+    const resultSearch = document.querySelector('.result__search')
+    resultSearch.classList.add('hideResult__search')
+}
 function showMenu() {
     var menuHide = document.querySelector('.menuhide')
     var menuHideWrap = document.querySelector('.menuhide__wrap')
@@ -112,7 +131,51 @@ function getOrder(callback) {
             alert("Có lỗi vui lòng reload")
         })
 }
-
+function getOrderDetail(callback) {
+    fetch(apiOrderDetail).then(function (reponse) {
+        return reponse.json()
+    })
+        .then(callback)
+        .catch(function () {
+            alert("Có lỗi vui lòng reload")
+        })
+}
+function searchTour() {
+    const searchBox = document.querySelector('.search__box')
+    const searchInput = searchBox.querySelector('.search__input').value
+    const resultBox = document.querySelector('.result__search')
+    const resulBody = resultBox.querySelector('.result__body')
+    if (searchInput == '') { }
+    else {
+        getTours(function (tours) {
+            const tourBySearch = tours.filter((tour) => {
+                return tour.title.search(searchInput) != -1
+            })
+            console.log(tourBySearch)
+            const htmls = tourBySearch.map((tour) => {
+                return `<div class="container__package result__style col l-4 ms-6 s-12 ">
+<div class="container__package__img">
+<img src="./asserts/img/travel/${tour.img}" data-id="${tour._id}" onclick="showTourDetail(this);">
+    <div class="container__package__day"><span>${tour.numberOfDay}</span></div>
+</div>
+<a onclick="showTourDetail(this);"  class="container__package__detail" data-id="${tour._id}">
+    ${tour.title}
+</a>
+<div class="container__package__footer">
+    <button onclick="showTourDetail(this);" data-id="${tour._id}" class="container__package__book">
+  BOOK NOW
+    </button>
+    <div class="container__package__price">From</br>
+        <span>${tour.price}</span>
+    </div>
+</div>
+</div>
+`
+            })
+            resulBody.innerHTML = htmls.join('')
+        })
+    }
+}
 function renderOrder() {
     const userEmail = sessionStorage.getItem('email')
     const order = document.querySelector('.order')
@@ -185,19 +248,27 @@ function showResult() {
     const main = document.getElementById('toast');
     var booking = document.querySelector('.tour__booking__group')
     var name = booking.querySelector('.tour__booking__name')
-    var email = booking.querySelector('.tour__booking__email')
+
     var phone = booking.querySelector('.tour__booking__phone')
+    var hotel = booking.querySelector('.tour__booking__hotel')
+    var vehicle = booking.querySelector('.tour__booking__vehicle')
     var date = booking.querySelector('.tour__booking__date')
     var message = booking.querySelector('.tour__booking__message')
+    var tour_merge = booking.querySelector('.policy__check')
+    var numberOfpeople = booking.querySelector('.tour__booking__numberOfpeople')
+
+    var posthotel = hotel.value
+    var postvehicle = vehicle.value
     var postname = name.value
-    var postEmail = email.value
+    var postpolicy = tour_merge.checked
     var postphone = phone.value
     var postdate = date.value
     var postmessage = message.value
-    var tour_id = localStorage.getItem('detail')
-    var regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
 
-    if (name.value == '' || email.value == '' || phone.value == '' || date.value == '') {
+    var tour_id = localStorage.getItem('detail')
+    // var regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+
+    if (name.value == '' || phone.value == '' || date.value == '' || vehicle.value == 'Choose your vehicle' || hotel.value == 'Choose your hotel' || numberOfpeople.value == '') {
         if (main) {
             const toast = document.createElement('div')
             toast.classList.add('toasterror');
@@ -217,28 +288,28 @@ function showResult() {
             }, 3000)
         }
     }
-    else if (regex.test(email.value) == false) {
-        if (main) {
+    // else if (regex.test(email.value) == false) {
+    //     if (main) {
 
-            const toast = document.createElement('div')
-            toast.classList.add('toasterror');
+    //         const toast = document.createElement('div')
+    //         toast.classList.add('toasterror');
 
-            toast.innerHTML = `        
-                    <div class="iconerror">
-                        <i class="fa-solid fa-circle-check " ></i>
-                    </div>
-                    <div class="body">
-                        <h3 class="title">Error</h3>
-                        <p class="message">Type your email</p>
-                    </div>               
-                    `
-            main.appendChild(toast);
+    //         toast.innerHTML = `        
+    //                 <div class="iconerror">
+    //                     <i class="fa-solid fa-circle-check " ></i>
+    //                 </div>
+    //                 <div class="body">
+    //                     <h3 class="title">Error</h3>
+    //                     <p class="message">Type your email</p>
+    //                 </div>               
+    //                 `
+    //         main.appendChild(toast);
 
-            setTimeout(function () {
-                main.removeChild(toast);
-            }, 3000)
-        }
-    }
+    //         setTimeout(function () {
+    //             main.removeChild(toast);
+    //         }, 3000)
+    //     }
+    // }
     else {
         if (main) {
             let email = sessionStorage.getItem('email')
@@ -249,19 +320,17 @@ function showResult() {
                 })
 
                 var data = {
-                    user_id: user[0].id,
-                    user_name: user[0].username,
-                    date: postdate,
+                    customer_id: user[0]._id,
+                    // user_name: user[0].username,
+                    // date: postdate,
                     tour_id: tour_id,
-                    message: postmessage,
-                    phonenumber: postphone,
-                    fullname: postname,
-                    email: postEmail
+                    // message: postmessage,
+                    // phonenumber: postphone,
+                    // fullname: postname,
+                    hotel_id: posthotel
+
                 }
-
-                postOrder(data)
-                // localStorage.setItem('userId', user[0].id)
-
+                postOrder(apiOrder, data)
             })
 
             const toast = document.createElement('div')
@@ -279,7 +348,7 @@ function showResult() {
                     `
             main.appendChild(toast);
             name.value = ''
-            email.value = ''
+
             phone.value = ''
             date.value = ''
             message.value = ''
@@ -291,50 +360,77 @@ function showResult() {
 }
 function renderTour(tours, id = 1) {
     var tourBlock = document.querySelector('.container__detail')
-    var tourPackage = tourBlock.querySelector('.row')
+    var tourPackage = tourBlock.querySelector('.tour__detail')
 
     var htmls = tours.map(function (tour) {
         if (tour._id == id)
             return `
-        <div class="tour__detail">
-                    <div class="tour__package">
-                        <div class="tour__package__img">
-                            <img src="./asserts/img/travel/${tour.img}" alt="">
-                        </div>
-                        <div class="tour__pakage__voting">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                        </div>
-                        <div class="tour__package__title">
-                            <span>${tour.title}</span>
-                        </div>
-                        <div class="tour__package__detail">
-                            <span>${tour.description}</span>
-                        </div>
-                    </div>
-                    <div class="tour__booking">
+            <div class="tour__package">
+            <div class="tour__package__img">
+            <img src="./asserts/img/travel/${tour.img}" alt="">
+        </div>
+        <div class="tour__pakage__voting">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+        </div>
+        <div class="tour__package__title">
+            <span>${tour.title}</span>
+        </div>
+        <div class="tour__package__detail">
+            <span>${tour.description}</span>
+        </div>
+        </div>
+        <div class="tour__booking">
                         <div class="tour__booking__title">
                             <span> Book This Tour</span>
                         </div>
                         <div class="tour__booking__group">
                             <input type="text" class="tour__booking__name" placeholder="Your full name">
-                            <input type="email" class="tour__booking__email" placeholder="Your email">
                             <input type="number" class="tour__booking__phone" placeholder="Your phone">
+                            <input type="number" class="tour__booking__numberOfpeople" placeholder="Number of peole">
                             <input type="date" class="tour__booking__date">
+                            <select class="tour__booking__hotel">
+                                <option>Choose your hotel</option>
+                                <option>hotel 1</option>
+                                <option>hotel 2</option>
+                                <option>hotel 3</option>
+                                <option>hotel 4</option>
+                                <option>hotel 5</option>
+                                <option>hotel 7</option>
+                            </select>
+                            <select class="tour__booking__vehicle">
+                                <option>Choose your vehicle</option>
+                                <option>vehicle 1</option>
+                                <option>vehicle 2</option>
+                                <option>vehicle 3</option>
+                                <option>vehicle 4</option>
+                                <option>vehicle 5</option>
+                                <option>vehicle 7</option>
+                            </select>
+                            <div class="tour__booking__policy">
+                                <input class="policy__check" type="checkbox">
+                                <span>
+                                    If you choose it will allow tour merge
+                                    </br>
+                                    If you do not choose, you will have to pay the full cost
+                                </span>
+                            </div>
+
+
                             <textarea class="tour__booking__message" placeholder="Type your message"></textarea>
                             <button class="tour__booking__btn" onclick="showResult();">Book Now</button>
                         </div>
                     </div>
-                </div>`
+       `
     })
     tourPackage.innerHTML = htmls.join('')
 
 }
-function postOrder(data) {
-    fetch(apiOrder, {
+function postOrder(api, data) {
+    fetch(api, {
         method: 'POST',
         headers: {
             'content-type': 'application/json'
