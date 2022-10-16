@@ -25,7 +25,6 @@ function onLoad() {
 
 
 
-    showAddForm()
 
 }
 function getTours(callback) {
@@ -183,7 +182,7 @@ function renderTour() {
         <i class="fa-solid fa-magnifying-glass" onclick="search();"></i>
     </div>
 
-    <button class="service__addtour">Thêm mới</button>
+    <button onclick="showAddForm();" class="service__addtour">Thêm mới</button>
     `
     const contentProduct = document.querySelector('.content__product')
     contentProduct.innerHTML = `<span class="product__label">STT</span>
@@ -319,13 +318,12 @@ function search() {
 }
 
 function showAddForm() {
-    const btnAdd = document.querySelector('.service__addtour')
+
     const form = document.querySelector('.addtour')
     const formbg = document.querySelector('.modal_background')
-    btnAdd.addEventListener('click', () => {
 
-        form.classList.remove('hideModal')
-    })
+    form.classList.remove('hideModal')
+
     formbg.addEventListener('click', () => {
         form.classList.add('hideModal')
     })
