@@ -393,10 +393,9 @@
 
 .top__banner__right__btn {
     position: absolute;
-
-    display: flex;
-    z-index: 3;
-    bottom : 20%;
+    display : flex;
+    z-index : 3;
+    bottom  : 20%;
 
 }
 

@@ -252,11 +252,22 @@
     .top__banner__right__detail__title {
         font-size  : 25px;
         font-weight: 400;
+        display    : none;
+    }
+
+    .top__banner__right__btn {
+        flex-direction: column;
     }
 
     .top__banner__right__btn>button {
-        min-width: 80px;
-        height   : 40px;
+        min-width : 80px;
+        height    : 40px;
+        margin-top: 20px;
+
+    }
+
+    .content__icon>span {
+        padding: 3px 10px;
     }
 
     .search__box__body>span {
