@@ -129,7 +129,7 @@ function searchTour() {
     const resultBox = document.querySelector('.result__search')
     const resulBody = resultBox.querySelector('.result__body')
     if (searchInput == '') {
-
+        resulBody.innerHTML = ``
     }
     else {
         getTours(function (tours) {

@@ -679,6 +679,7 @@ img {
 .search__box__body {
     display    : flex;
     align-items: center;
+
 }
 
 .search__box__body>input {
@@ -729,19 +730,21 @@ img {
 
 .showSearchBar {
     display  : block;
-    animation: dowtotop 1s linear 1;
+    animation: dowtotop 0.5s linear 1;
 
 }
 
 @keyframes dowtotop {
     from {
         opacity  : 0;
-        transform: translateY(100px);
+        transform: scale(0);
+
     }
 
     to {
         opacity  : 1;
-        transform: translateY(0);
+        transform: scale(1);
+
     }
 }
 
@@ -757,13 +760,15 @@ img {
 
 @keyframes resultSearch {
     from {
-        opacity  : 0;
-        transform: translateY(-100px);
+        opacity     : 0;
+        /* transform: translateY(-100px); */
+        transform   : scale(0);
     }
 
     to {
-        opacity  : 1;
-        transform: translateY(0);
+        opacity     : 1;
+        /* transform: translateY(0); */
+        transform   : scale(1);
     }
 }
 
@@ -772,7 +777,7 @@ img {
     width     : 100%;
     height    : 100vh;
     z-index   : 100;
-    animation : resultSearch 1s linear 1;
+    animation : resultSearch 0.3s linear 1;
     overflow-y: scroll;
 }
 
@@ -785,15 +790,19 @@ img {
 }
 
 .result__search>span {
-    position        : absolute;
+    position        : fixed;
+    display         : block;
     z-index         : 100;
     right           : 5px;
     top             : 5px;
     background-color: var(--primary-color);
     color           : white;
-    padding         : 7px 15px;
-    border-radius   : 50%;
-    font-weight     : 600;
+    display         : flex;
+    align-items     : center;
+    justify-content : center;
+    border-radius   : 5px;
+    height          : 22px;
+    width           : 50px;
     cursor          : pointer;
 }
 
@@ -811,11 +820,3 @@ img {
     background-color: rgba(0, 0, 0, 0.5);
 
 }
-
-/* .search__message {
-    position   : relative;
-    color      : white;
-    font-weight: 600;
-    font-size  : 32px;
-    margin     : 115px auto;
-} */

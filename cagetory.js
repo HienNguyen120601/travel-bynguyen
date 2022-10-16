@@ -145,7 +145,7 @@ function searchTour() {
     const searchInput = searchBox.querySelector('.search__input').value
     const resultBox = document.querySelector('.result__search')
     const resulBody = resultBox.querySelector('.result__body')
-    if (searchInput == '') { }
+    if (searchInput == '') { resulBody.innerHTML = `` }
     else {
         getTours(function (tours) {
             const tourBySearch = tours.filter((tour) => {
