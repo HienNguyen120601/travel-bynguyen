@@ -667,24 +667,29 @@ img {
 }
 
 .search__box {
-    position     : absolute;
-    margin-left  : 330px;
-    border-radius: 10px;
-    border       : none;
-    display      : none;
+    position        : absolute;
+    background-color: white;
+
+    border : none;
+    display: none;
+    width  : 100%;
 
 
 }
 
 .search__box__body {
-    display    : flex;
-    align-items: center;
+    display        : flex;
+    width          : 100%;
+    height         : 60px;
+    align-items    : center;
+    justify-content: center;
+    right          : 20px;
 
 }
 
 .search__box__body>input {
     height       : 45px;
-    width        : 700px;
+    width        : 50%;
     border-radius: 10px;
     border       : 2px solid #ab9997;
     outline-color: var(--primary-color);
