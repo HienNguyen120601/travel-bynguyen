@@ -2,8 +2,8 @@
 var cagetory = document.querySelector('.cagetory__wrap')
 var apiTour = 'https://travel-api-hiennguyen.herokuapp.com/api/tour'
 var apiUser = 'https://travel-api-hiennguyen.herokuapp.com/api/customer'
-var apiOrder = 'https://632d7be60d7928c7d24c1655.mockapi.io/Order'
-var apiOrderDetail = 'https://632d7be60d7928c7d24c1655.mockapi.io/Oder_detail'
+var apiOrder = 'https://travel-api-hiennguyen.herokuapp.com/api/order'
+var apiOrderDetail = 'https://travel-api-hiennguyen.herokuapp.com/api/orderDetail'
 var tourTitle
 function showAdmin() {
     const adminbtn = document.querySelector('.showDetail')
@@ -257,16 +257,18 @@ function showResult() {
     var tour_merge = booking.querySelector('.policy__check')
     var numberOfpeople = booking.querySelector('.tour__booking__numberOfpeople')
 
+
+    var postName = name.value
     var posthotel = hotel.value
     var postvehicle = vehicle.value
-    var postname = name.value
     var postpolicy = tour_merge.checked
     var postphone = phone.value
     var postdate = date.value
-    var postmessage = message.value
+    var postNumber = numberOfpeople.value
+    var postmessage = message.value + ""
 
     var tour_id = localStorage.getItem('detail')
-    // var regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+
 
     if (name.value == '' || phone.value == '' || date.value == '' || vehicle.value == 'Choose your vehicle' || hotel.value == 'Choose your hotel' || numberOfpeople.value == '') {
         if (main) {
@@ -288,49 +290,38 @@ function showResult() {
             }, 3000)
         }
     }
-    // else if (regex.test(email.value) == false) {
-    //     if (main) {
 
-    //         const toast = document.createElement('div')
-    //         toast.classList.add('toasterror');
-
-    //         toast.innerHTML = `        
-    //                 <div class="iconerror">
-    //                     <i class="fa-solid fa-circle-check " ></i>
-    //                 </div>
-    //                 <div class="body">
-    //                     <h3 class="title">Error</h3>
-    //                     <p class="message">Type your email</p>
-    //                 </div>               
-    //                 `
-    //         main.appendChild(toast);
-
-    //         setTimeout(function () {
-    //             main.removeChild(toast);
-    //         }, 3000)
-    //     }
-    // }
     else {
         if (main) {
             let email = sessionStorage.getItem('email')
             getUser(function (users) {
-
                 const user = users.filter((user) => {
                     return user.email == email
                 })
 
                 var data = {
                     customer_id: user[0]._id,
-                    // user_name: user[0].username,
-                    // date: postdate,
+                    customer_name: postName,
+                    hotel_id: posthotel,
                     tour_id: tour_id,
-                    // message: postmessage,
-                    // phonenumber: postphone,
-                    // fullname: postname,
-                    hotel_id: posthotel
-
+                    date: postdate,
+                    phonenumber: postphone,
+                    status: false
                 }
-                postOrder(apiOrder, data)
+
+                postOrder(apiOrder, data, function (callback) {
+                    var dataDetail = {
+                        order_id: callback._id,
+                        driver_id: 'Driver1',
+                        vehicle_id: postvehicle,
+                        tourguide_id: 'Tour guide 1',
+                        merge_tour: postpolicy,
+                        numberOfPeople: postNumber,
+                        note: postmessage
+                    }
+                    postOrderDetail(apiOrderDetail, dataDetail)
+                })
+
             })
 
             const toast = document.createElement('div')
@@ -348,10 +339,10 @@ function showResult() {
                     `
             main.appendChild(toast);
             name.value = ''
-
             phone.value = ''
             date.value = ''
             message.value = ''
+            numberOfpeople.value = ''
             setTimeout(function () {
                 main.removeChild(toast);
             }, 3000)
@@ -429,7 +420,7 @@ function renderTour(tours, id = 1) {
     tourPackage.innerHTML = htmls.join('')
 
 }
-function postOrder(api, data) {
+function postOrder(api, data, callback) {
     fetch(api, {
         method: 'POST',
         headers: {
@@ -439,11 +430,26 @@ function postOrder(api, data) {
 
     })
         .then(function (reponse) {
-            reponse.json()
+            return reponse.json()
         })
-        .then()
-}
+        .then(callback)
 
+}
+function postOrderDetail(api, data) {
+    fetch(api, {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(data)
+
+    })
+        .then(function (reponse) {
+            return reponse.json()
+        })
+
+
+}
 
 onLoad()
 
