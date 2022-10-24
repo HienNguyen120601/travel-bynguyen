@@ -2,7 +2,7 @@
 var cagetory = document.querySelector('.cagetory__wrap')
 var apiTour = 'https://travel-api-hiennguyen.herokuapp.com/api/tour'
 var apiUser = 'https://travel-api-hiennguyen.herokuapp.com/api/customer'
-var apiOrder = 'https://632d7be60d7928c7d24c1655.mockapi.io/Order'
+var apiOrder = 'https://travel-api-hiennguyen.herokuapp.com/api/order'
 
 
 var tourTitle
@@ -227,32 +227,38 @@ function renderOrder() {
 
             return user.email == userEmail
         })
+
         getOrder(function (orders) {
+            console.log(orders)
             const tourOrders = orders.filter((order) => {
-                return order.user_id == userLogin[0].id
+
+                return order.customer_id == userLogin[0]._id
             })
 
             const htmls = tourOrders.map((tourOrder) => {
+
                 getTours(function (tours) {
                     const userTourBooked = tours.filter((tour) => {
-                        return tour.id == tourOrder.tour_id
+                        return tour._id == tourOrder.tour_id
                     })
-                    tourTitle = userTourBooked.map((tour) => {
-                        return tour.title
-                    })
-
+                    console.log(userTourBooked)
                 })
+                if (tourOrder.status == true)
+                    var status = 'Đã thanh toán'
+                else
+                    var status = 'Chưa thanh toán'
+
                 return `<ul class="order__list">          
                 
                         <li class="order__item">
-                        ${tourOrder.fullname}
+                        ${tourOrder.customer_name}
                         </li>
                         <li class="order__item">
                         ${tourOrder.phonenumber}
                         </li>
                         
                         <li class="order__item">
-                        ${tourOrder.message}
+                        ${status}
                         </li>
                         <li class="order__item">
                         ${tourOrder.tour_id}
@@ -267,8 +273,8 @@ function renderOrder() {
            
             <span>Fullname</span>
             <span>PhoneNumber</span>
-            <span>Message</span>
-            <span>TourID</span>
+            <span>Status</span>
+            <span>TourName</span>
             <span>Date</span>
         </div>`+ htmls.join('')
         })

@@ -11,7 +11,7 @@ function onLoad() {
     }
 
     render = sessionStorage.getItem('render')
-    console.log(render)
+
     if (render == 'tour') {
 
         renderTour()
@@ -179,7 +179,7 @@ function renderTour() {
         `
         <div class="service__search">
         <input type="text" placeholder="Nhập tên tour" class="service__input">
-        <i class="fa-solid fa-magnifying-glass" onclick="search();"></i>
+        <i class="fa-solid fa-magnifying-glass" onclick="searchTour();"></i>
     </div>
 
     <button onclick="showAddForm();" class="service__addtour">Thêm mới</button>
@@ -230,7 +230,7 @@ function renderCustormer() {
         `
         <div class="service__search">
         <input type="text" placeholder="Nhập tên khách hàng" class="service__input">
-        <i class="fa-solid fa-magnifying-glass" onclick="search();"></i>
+        <i class="fa-solid fa-magnifying-glass" onclick="searchCustomer();"></i>
     </div>
 
    
@@ -246,7 +246,7 @@ function renderCustormer() {
     const contentList = document.querySelector('.content__list')
 
     getUser(function (users) {
-        console.log(contentList)
+
         const htmls = users.map((user, index) => {
 
             return `
@@ -289,7 +289,7 @@ function blockCustormer(customer) {
 
 
 }
-function search() {
+function searchTour() {
 
     const contentList = document.querySelector('.content__list')
     const search = document.querySelector('.service__search')
@@ -311,6 +311,33 @@ function search() {
         <i class="fa-solid fa-pen"></i>
         </span>
     </div>`
+
+        })
+        contentList.innerHTML = htmls.join('')
+    })
+}
+function searchCustomer() {
+
+    const contentList = document.querySelector('.content__list')
+    const search = document.querySelector('.service__search')
+    const input = search.querySelector('.service__input').value
+    getUser(function (users) {
+        const tourByTitle = users.filter((user) => {
+            return user.username.search(input) != -1
+        })
+        const htmls = tourByTitle.map((user, index) => {
+            return `
+            <div class="customer__item">
+            <span class="customer__content">${index + 1}</span>
+            <span class="customer__content">${user.username}</span>
+            <span class="customer__content">${user.email}</span>
+            <span class="customer__content">${user.password}</span>
+            <span class="customer__content">${user.block}</span>
+            <span class="customer__content">
+            <i onclick="blockCustormer(this)" class="fa-solid fa-ban" data-id="${user._id}"></i>
+            
+            </span>
+        </div>`
 
         })
         contentList.innerHTML = htmls.join('')

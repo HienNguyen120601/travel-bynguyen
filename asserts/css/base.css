@@ -574,23 +574,23 @@ img {
 }
 
 .order__label :nth-child(2) {
-    flex     : 0 0 16.33333%;
-    max-width: 16.33333%;
+    flex     : 0 0 13.33333%;
+    max-width: 13.33333%;
 }
 
 .order__label :nth-child(3) {
+    flex     : 0 0 16.63333%;
+    max-width: 16.63333%;
+}
+
+.order__label :nth-child(4) {
     flex     : 0 0 33.33333%;
     max-width: 33.33333%;
 }
 
-.order__label :nth-child(4) {
-    flex     : 0 0 8.33333%;
-    max-width: 8.33333%;
-}
-
 .order__label :nth-child(5) {
-    flex     : 0 0 16.33333%;
-    max-width: 16.33333%;
+    flex     : 0 0 10.33333%;
+    max-width: 10.33333%;
 }
 
 .order__list :nth-child(1) {
@@ -637,30 +637,30 @@ img {
 }
 
 .order__list :nth-child(2) {
-    flex         : 0 0 16.33333%;
-    max-width    : 16.33333%;
+    flex         : 0 0 13.33333%;
+    max-width    : 13.33333%;
     overflow     : hidden;
     text-overflow: ellipsis;
 }
 
 .order__list :nth-child(3) {
-    flex         : 0 0 33.33333%;
-    max-width    : 33.33333%;
+    flex         : 0 0 16.33333%;
+    max-width    : 16.33333%;
     overflow     : hidden;
     white-space  : nowrap;
     text-overflow: ellipsis;
 }
 
 .order__list :nth-child(4) {
-    flex         : 0 0 8.33333%;
-    max-width    : 8.33333%;
+    flex         : 0 0 33.33333%;
+    max-width    : 33.33333%;
     overflow     : hidden;
     text-overflow: ellipsis;
 }
 
 .order__list :nth-child(5) {
-    flex         : 0 0 16.33333%;
-    max-width    : 16.33333%;
+    flex         : 0 0 10.33333%;
+    max-width    : 10.33333%;
     overflow     : hidden;
     text-overflow: ellipsis;
     white-space  : nowrap;
