@@ -156,9 +156,9 @@ img {
 }
 
 .header__topbar__user {
-    padding-left: 12px;
-    position    : relative;
-    cursor      : pointer;
+    padding : 0 12px;
+    position: relative;
+    cursor  : pointer;
     ;
 }
 
@@ -168,6 +168,10 @@ img {
     padding         : 4px 11px;
     border-radius   : 50%;
 
+}
+
+.header__topbar__icon {
+    padding: 0 12px;
 }
 
 .header__topbar__user>i {
@@ -184,7 +188,7 @@ img {
     width           : 200px;
     position        : absolute;
     background-color: var(--background-color);
-    left            : 11px;
+    right           : 11px;
     top             : 35px;
     border          : 2px solid var(--primary-color);
     border-radius   : 5px;
