@@ -243,13 +243,7 @@ function renderOrder() {
 
             const htmls = tourOrders.map((tourOrder) => {
 
-                getTours(function (tours) {
-                    tourTitle = tours.filter((tour) => {
-                        return tour._id == tourOrder.tour_id
-                    })
-                    console.log(tourTitle)
-                })
-                console.log(tourTitle)
+
                 if (tourOrder.status == true)
                     var status = 'Đã thanh toán'
                 else
