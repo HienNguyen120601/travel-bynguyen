@@ -165,34 +165,74 @@ function searchTour() {
         })
     }
 }
-function renderTour(tours) {
+function renderOrder() {
+    const userEmail = sessionStorage.getItem('email')
+    const order = document.querySelector('.order')
+    order.classList.remove('hideModal')
+    const modal_background = order.querySelector('.modal_background')
+    modal_background.addEventListener('click', () => {
+        order.classList.add('hideModal')
+    })
+    const orderList = order.querySelector('.modal_body_order')
+    getUser(function (users) {
+        const userLogin = users.filter((user) => {
 
-    var tourBlock = document.querySelector('.container')
-    var tourPackage = tourBlock.querySelector('.row')
+            return user.email == userEmail
+        })
 
-    var htmls = tours.map(function (tour) {
+        getOrder(function (orders) {
 
-        return `
-        <div class="container__package col l-4 ms-6 s-12 ">
-                    <div class="container__package__img">
-                    <img src="./asserts/img/travel/${tour.img}" data-id="${tour._id}" onclick="showTourDetail(this);">
-                        <div class="container__package__day"><span>${tour.numberOfDay}</span></div>
-                    </div>
-                    <a onclick="showTourDetail(this);"  class="container__package__detail" data-id="${tour._id}">
-                        ${tour.title}
-                    </a>
-                    <div class="container__package__footer">
-                        <button onclick="showTourDetail(this);" data-id="${tour._id}" class="container__package__book">
-                      BOOK NOW
-                        </button>
-                        <div class="container__package__price">From</br>
-                            <span>${tour.price}</span>
-                        </div>
-                    </div>
-                </div>`
+            const tourOrders = orders.filter((order) => {
+
+                return order.customer_id == userLogin[0]._id
+            })
+
+            const htmls = tourOrders.map((tourOrder) => {
+
+                getTours(function (tours) {
+                    tourTitle = tours.filter((tour) => {
+                        return tour._id == tourOrder.tour_id
+                    })
+                    console.log(tourTitle)
+                })
+                console.log(tourTitle)
+                if (tourOrder.status == true)
+                    var status = 'Đã thanh toán'
+                else
+                    var status = 'Chưa thanh toán'
+
+                return `<ul class="order__list">          
+                
+                        <li class="order__item">
+                        ${tourOrder.customer_name}
+                        </li>
+                        <li class="order__item">
+                        ${tourOrder.phonenumber}
+                        </li>
+                        
+                        <li class="order__item">
+                        ${status}
+                        </li>
+                        <li class="order__item">
+                        ${tourOrder.tour_name}
+                        </li>
+                        <li class="order__item">
+                        ${tourOrder.date}
+                        </li>
+                        </ul>`
+            })
+
+            orderList.innerHTML = `<div class="order__label">
+           
+            <span>Fullname</span>
+            <span>PhoneNumber</span>
+            <span>Status</span>
+            <span>TourName</span>
+            <span>Date</span>
+        </div>`+ htmls.join('')
+        })
     })
 
-    tourPackage.innerHTML = htmls.join('')
 
 }
 

@@ -233,16 +233,23 @@ function renderOrder() {
 
             return user.email == userEmail
         })
+
         getOrder(function (orders) {
+
             const tourOrders = orders.filter((order) => {
+
                 return order.customer_id == userLogin[0]._id
             })
+
             const htmls = tourOrders.map((tourOrder) => {
+
                 getTours(function (tours) {
-                    const userTourBooked = tours.filter((tour) => {
+                    tourTitle = tours.filter((tour) => {
                         return tour._id == tourOrder.tour_id
                     })
+                    console.log(tourTitle)
                 })
+                console.log(tourTitle)
                 if (tourOrder.status == true)
                     var status = 'Đã thanh toán'
                 else
@@ -261,7 +268,7 @@ function renderOrder() {
                         ${status}
                         </li>
                         <li class="order__item">
-                        ${tourOrder.tour_id}
+                        ${tourOrder.tour_name}
                         </li>
                         <li class="order__item">
                         ${tourOrder.date}
@@ -270,6 +277,7 @@ function renderOrder() {
             })
 
             orderList.innerHTML = `<div class="order__label">
+           
             <span>Fullname</span>
             <span>PhoneNumber</span>
             <span>Status</span>
@@ -281,7 +289,6 @@ function renderOrder() {
 
 
 }
-
 onLoad()
 
 
