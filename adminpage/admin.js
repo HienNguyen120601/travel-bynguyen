@@ -100,7 +100,7 @@ function updateData(api, id, data) {
 
 
 }
-function addTour() {
+async function addTour() {
     const formMain = document.querySelector('.addtour')
     const title = formMain.querySelector('.title').value
     const price = formMain.querySelector('.price').value
@@ -118,17 +118,15 @@ function addTour() {
     }
     console.log(data)
 
-    postData(apiTour, data)
-    alert("Success!")
-    setTimeout(() => {
-        location.reload()
-    }, 1500)
+    await postData(apiTour, data)
+    await swal("Good job!", "You added this tour", "success");
+    await location.reload()
 
 
 
 
 }
-function updateTour() {
+async function updateTour() {
     const formMain = document.querySelector('.updateTour')
     const title = formMain.querySelector('.title').value
     const price = formMain.querySelector('.price').value
@@ -145,21 +143,16 @@ function updateTour() {
         img: imgname
     }
     const id = sessionStorage.getItem('tour_id')
-    updateData(apiTour, id, data)
-    alert("Success!")
-    setTimeout(() => {
-        location.reload()
-    }, 1500)
+    await updateData(apiTour, id, data)
+    await swal("Good job!", "You updated this tour", "success");
+    await location.reload()
 }
-function deleteTour(tour) {
+async function deleteTour(tour) {
     const tourid = tour.getAttribute('data-id')
 
-    deleteData(apiTour, tourid)
-    alert("Success!")
-    setTimeout(() => {
-
-        location.reload()
-    }, 1500)
+    await deleteData(apiTour, tourid)
+    await swal("Good job!", "You deleted this tour", "success");
+    await location.reload()
 
 
 
@@ -271,7 +264,7 @@ function renderCustormer() {
 function blockCustormer(customer) {
 
     const customerId = customer.getAttribute('data-id')
-    getUser(function (users) {
+    getUser(async function (users) {
         const custormerBlock = users.filter((user) => {
             return user._id == customerId
         })
@@ -280,11 +273,9 @@ function blockCustormer(customer) {
             custormerBlock[0].block = 1
         else
             custormerBlock[0].block = 0
-        updateData(apiUser, customerId, custormerBlock[0])
-        alert('Success')
-        setTimeout(() => {
-            location.reload()
-        }, 1500)
+        await updateData(apiUser, customerId, custormerBlock[0])
+        await swal("Good job!", "", "success");
+        await location.reload()
     })
 
 

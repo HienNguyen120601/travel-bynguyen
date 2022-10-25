@@ -5,6 +5,7 @@ var apiUser = 'https://travel-api-hiennguyen.herokuapp.com/api/customer'
 var apiOrder = 'https://travel-api-hiennguyen.herokuapp.com/api/order'
 var apiOrderDetail = 'https://travel-api-hiennguyen.herokuapp.com/api/orderDetail'
 var tourTitle
+
 function showAdmin() {
     const adminbtn = document.querySelector('.showDetail')
     const btnShow = adminbtn.querySelector('.showdetail__btn')
@@ -100,7 +101,7 @@ function showSinginForm() {
 function onLoad() {
     var id = localStorage.getItem("detail")
     getTours(function (tours) {
-        renderTour(tours, id || 1)
+        renderTour(tours, id || "6357ad0add19d4ece548d0e7")
     })
     // localStorage.clear();
 }
@@ -201,11 +202,12 @@ function renderOrder() {
             const htmls = tourOrders.map((tourOrder) => {
 
                 getTours(function (tours) {
-                    const userTourBooked = tours.filter((tour) => {
+                    tourTitle = tours.filter((tour) => {
                         return tour._id == tourOrder.tour_id
                     })
-                    console.log(userTourBooked)
+                    console.log(tourTitle)
                 })
+                console.log(tourTitle)
                 if (tourOrder.status == true)
                     var status = 'Đã thanh toán'
                 else
@@ -355,7 +357,7 @@ function showResult() {
         }
     }
 }
-function renderTour(tours, id = 1) {
+function renderTour(tours, id) {
     var tourBlock = document.querySelector('.container__detail')
     var tourPackage = tourBlock.querySelector('.tour__detail')
 

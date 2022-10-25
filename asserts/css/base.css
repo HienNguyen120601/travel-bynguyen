@@ -755,8 +755,12 @@ img {
 
 .result__style {
     background-color: white;
-    border-radius   : 5px;
+    border-radius   : 10px;
     border-top      : 10px solid white;
+
+
+
+
 }
 
 .hideResult__search {

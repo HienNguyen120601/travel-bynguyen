@@ -4,7 +4,7 @@ var apiTour = 'https://travel-api-hiennguyen.herokuapp.com/api/tour'
 var apiUser = 'https://travel-api-hiennguyen.herokuapp.com/api/customer'
 var apiOrder = 'https://travel-api-hiennguyen.herokuapp.com/api/order'
 
-var userTourBooked
+
 var tourTitle
 function showAdmin() {
     const adminbtn = document.querySelector('.showDetail')
@@ -233,23 +233,16 @@ function renderOrder() {
 
             return user.email == userEmail
         })
-
         getOrder(function (orders) {
-
             const tourOrders = orders.filter((order) => {
-
                 return order.customer_id == userLogin[0]._id
             })
-
             const htmls = tourOrders.map((tourOrder) => {
-
                 getTours(function (tours) {
-                    userTourBooked = tours.filter((tour) => {
+                    const userTourBooked = tours.filter((tour) => {
                         return tour._id == tourOrder.tour_id
                     })
                 })
-
-
                 if (tourOrder.status == true)
                     var status = 'Đã thanh toán'
                 else
@@ -277,7 +270,6 @@ function renderOrder() {
             })
 
             orderList.innerHTML = `<div class="order__label">
-           
             <span>Fullname</span>
             <span>PhoneNumber</span>
             <span>Status</span>
