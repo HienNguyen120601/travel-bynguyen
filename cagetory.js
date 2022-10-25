@@ -1,9 +1,9 @@
 
 var cagetory = document.querySelector('.cagetory__wrap')
-var apiTour = 'https://travel-api-hiennguyen.herokuapp.com/api/tour'
-var apiUser = 'https://travel-api-hiennguyen.herokuapp.com/api/customer'
-var apiOrder = 'https://travel-api-hiennguyen.herokuapp.com/api/order'
-var apiOrderDetail = 'https://travel-api-hiennguyen.herokuapp.com/api/orderDetail'
+var apiTour = 'https://travel-api-hiennguyen.vercel.app/api/tour'
+var apiUser = 'https://travel-api-hiennguyen.vercel.app/api/customer'
+var apiOrder = 'https://travel-api-hiennguyen.vercel.app/api/order'
+var apiOrderDetail = 'https://travel-api-hiennguyen.vercel.app/api/orderDetail'
 var tourTitle
 
 function showAdmin() {
@@ -226,7 +226,7 @@ function renderOrder() {
                         ${status}
                         </li>
                         <li class="order__item">
-                        ${tourOrder.tour_id}
+                        ${tourOrder.tour_name}
                         </li>
                         <li class="order__item">
                         ${tourOrder.date}
@@ -306,32 +306,35 @@ function showResult() {
                 const user = users.filter((user) => {
                     return user.email == email
                 })
-
-                var data = {
-                    customer_id: user[0]._id,
-                    customer_name: postName,
-                    hotel_id: posthotel,
-                    tour_id: tour_id,
-                    date: postdate,
-                    phonenumber: postphone,
-                    status: false
-                }
-
-                postOrder(apiOrder, data, function (callback) {
-                    var dataDetail = {
-                        order_id: callback._id,
-                        driver_id: 'Driver1',
-                        vehicle_id: postvehicle,
-                        tourguide_id: 'Tour guide 1',
-                        merge_tour: postpolicy,
-                        numberOfPeople: postNumber,
-                        note: postmessage
+                getTours(function (tours) {
+                    const tourid = localStorage.getItem('detail')
+                    const getTourbyId = tours.filter(tour => {
+                        return tour._id == tourid
+                    })
+                    var data = {
+                        customer_id: user[0]._id,
+                        customer_name: postName,
+                        hotel_id: posthotel,
+                        tour_id: tour_id,
+                        tour_name: getTourbyId[0].title,
+                        date: postdate,
+                        phonenumber: postphone,
+                        status: false
                     }
-                    postOrderDetail(apiOrderDetail, dataDetail)
+                    postOrder(apiOrder, data, function (callback) {
+                        var dataDetail = {
+                            order_id: callback._id,
+                            driver_id: 'Driver1',
+                            vehicle_id: postvehicle,
+                            tourguide_id: 'Tour guide 1',
+                            merge_tour: postpolicy,
+                            numberOfPeople: postNumber,
+                            note: postmessage
+                        }
+                        postOrderDetail(apiOrderDetail, dataDetail)
+                    })
                 })
-
             })
-
             const toast = document.createElement('div')
             toast.classList.add('toastsuccess');
 

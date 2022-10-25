@@ -1,8 +1,8 @@
 
 var cagetory = document.querySelector('.cagetory__wrap')
-var apiTour = 'https://travel-api-hiennguyen.herokuapp.com/api/tour'
-var apiUser = 'https://travel-api-hiennguyen.herokuapp.com/api/customer'
-var apiOrder = 'https://travel-api-hiennguyen.herokuapp.com/api/order'
+var apiTour = 'https://travel-api-hiennguyen.vercel.app/api/tour'
+var apiUser = 'https://travel-api-hiennguyen.vercel.app/api/customer'
+var apiOrder = 'https://travel-api-hiennguyen.vercel.app/api/order'
 
 
 var tourTitle
