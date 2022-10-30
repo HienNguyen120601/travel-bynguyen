@@ -55,7 +55,7 @@
                         <span onclick="renderTour();" class="product">Sản phẩm</span>
                     </li>
                     <li class="sidebar__item">
-                        <span class="order">Đơn hàng</span>
+                        <span onclick="renderOrder();" class="order">Đơn hàng</span>
                     </li>
                     <li class="sidebar__item">
                         <span onclick="renderCustormer();" class="customer">Khách hàng</span>
@@ -116,95 +116,114 @@
 
             </div>
             <div class="content__product">
+
             </div>
             <div class="content__list">
 
             </div>
+            <!-- <div class="order__detail">
+                <div class="order__detail__lab">
+                    <span class="orderDetail_label">Driver</span>
+                    <span class="orderDetail_label">Vehicle</span>
+                    <span class="orderDetail_label">TourGuide</span>
+                    <span class="orderDetail_label">Marge</span>
+                    <span class="orderDetail_label">People</span>
+                    <span class="orderDetail_label">Note</span>
+                </div>
+                <div class="order__detail__list">
+                    <span class="orderDetail_item">Driver</span>
+                    <span class="orderDetail_item">Vehicle</span>
+                    <span class="orderDetail_item">TourGuide</span>
+                    <span class="orderDetail_item">Marge</span>
+                    <span class="orderDetail_item">People</span>
+                    <span class="orderDetail_item">Note</span>
+                </div>
+            </div> -->
         </div>
-    </div>
-    <!-- CURD -->
-    <!-- Add -->
-    <div class="modal addtour hideModal">
-        <div class="modal_background ">
-        </div>
-        <div class="modal_body">
+        <!-- CURD -->
+        <!-- Add -->
+        <div class="modal addtour hideModal">
+            <div class="modal_background ">
+            </div>
+            <div class="modal_body">
 
-            <div class="auth-form">
-                <div class="auth-form_container">
+                <div class="auth-form">
+                    <div class="auth-form_container">
 
-                    <div class="auth-form_form">
-                        <div class="auth-form_group">
-                            <label for="">Title</label>
-                            <input type="text" class="auth-form_input title" placeholder="Ex: Title">
-                        </div>
-                        <div class="auth-form_group">
-                            <label for="">Price</label>
-                            <input type="text" class="auth-form_input price" placeholder="Ex: $30.00">
-                        </div>
-                        <div class="auth-form_group">
-                            <label for="">Day of number</label>
-                            <input type="text" class="auth-form_input dayofnumber" placeholder="Ex: 2 Day & 3 Night">
-                        </div>
-                        <div class="auth-form_group">
-                            <label for="">Description</label>
-                            <input type="text" class="auth-form_input description" placeholder="Ex: Description">
-                        </div>
-                        <div class="auth-form_group">
-                            <label for="">Image</label>
-                            <input type="file" class="auth-form_input img">
-                        </div>
-                        <div class="auth-form_group">
-
-                            <button class="btnSubmit" onclick="addTour();">Submit</button>
+                        <div class="auth-form_form">
+                            <div class="auth-form_group">
+                                <label for="">Title</label>
+                                <input type="text" class="auth-form_input title" placeholder="Ex: Title">
+                            </div>
+                            <div class="auth-form_group">
+                                <label for="">Price</label>
+                                <input type="text" class="auth-form_input price" placeholder="Ex: $30.00">
+                            </div>
+                            <div class="auth-form_group">
+                                <label for="">Day of number</label>
+                                <input type="text" class="auth-form_input dayofnumber"
+                                    placeholder="Ex: 2 Day & 3 Night">
+                            </div>
+                            <div class="auth-form_group">
+                                <label for="">Description</label>
+                                <input type="text" class="auth-form_input description" placeholder="Ex: Description">
+                            </div>
+                            <div class="auth-form_group">
+                                <label for="">Image</label>
+                                <input type="file" class="auth-form_input img">
+                            </div>
+                            <div class="auth-form_group">
+                                <button class="btnSubmit" onclick="addTour();">Submit</button>
+                            </div>
                         </div>
                     </div>
                 </div>
+
             </div>
-
         </div>
-    </div>
-    <!-- update -->
-    <div class="modal updateTour hideModal">
-        <div class="modal_background ">
-        </div>
-        <div class="modal_body">
+        <!-- update -->
+        <div class="modal updateTour hideModal">
+            <div class="modal_background ">
+            </div>
+            <div class="modal_body">
 
-            <div class="auth-form">
-                <div class="auth-form_container">
+                <div class="auth-form">
+                    <div class="auth-form_container">
 
-                    <div class="auth-form_form">
-                        <div class="auth-form_group">
-                            <label for="">Title</label>
-                            <input type="text" class="auth-form_input title" placeholder="Ex: Title">
-                        </div>
-                        <div class="auth-form_group">
-                            <label for="">Price</label>
-                            <input type="text" class="auth-form_input price" placeholder="Ex: $30.00">
-                        </div>
-                        <div class="auth-form_group">
-                            <label for="">Day of number</label>
-                            <input type="text" class="auth-form_input dayofnumber" placeholder="Ex: 2 Day & 3 Night">
-                        </div>
-                        <div class="auth-form_group">
-                            <label for="">Description</label>
-                            <input type="text" class="auth-form_input description" placeholder="Ex: Description">
-                        </div>
-                        <div class="auth-form_group">
-                            <label for="">Image</label>
-                            <input type="file" class="auth-form_input img">
-                        </div>
-                        <div class="auth-form_group">
+                        <div class="auth-form_form">
+                            <div class="auth-form_group">
+                                <label for="">Title</label>
+                                <input type="text" class="auth-form_input title" placeholder="Ex: Title">
+                            </div>
+                            <div class="auth-form_group">
+                                <label for="">Price</label>
+                                <input type="text" class="auth-form_input price" placeholder="Ex: $30.00">
+                            </div>
+                            <div class="auth-form_group">
+                                <label for="">Day of number</label>
+                                <input type="text" class="auth-form_input dayofnumber"
+                                    placeholder="Ex: 2 Day & 3 Night">
+                            </div>
+                            <div class="auth-form_group">
+                                <label for="">Description</label>
+                                <input type="text" class="auth-form_input description" placeholder="Ex: Description">
+                            </div>
+                            <div class="auth-form_group">
+                                <label for="">Image</label>
+                                <input type="file" class="auth-form_input img">
+                            </div>
+                            <div class="auth-form_group">
 
-                            <button class="btnSubmit" onclick="updateTour();">Submit</button>
+                                <button class="btnSubmit" onclick="updateTour();">Submit</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
+            </div>
         </div>
-    </div>
-    <script src="./admin.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script src="./admin.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </body>
 
 </html>

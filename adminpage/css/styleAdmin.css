@@ -411,3 +411,168 @@ a {
 .btnSubmit:hover {
     opacity: 0.8;
 }
+
+.order_label {
+    font-weight: 600;
+    border     : 1px solid black;
+    text-align : center;
+}
+
+.order_label:nth-child(1) {
+    flex     : 0 0 5%;
+    max-width: 5%;
+}
+
+.order_label:nth-child(2) {
+    flex     : 0 0 16.6333%;
+    max-width: 16.6333%;
+}
+
+.order_label:nth-child(3) {
+    flex     : 0 0 16.6333%;
+    max-width: 16.6333%;
+}
+
+.order_label:nth-child(4) {
+    flex     : 0 0 25%;
+    max-width: 25%;
+}
+
+.order_label:nth-child(5) {
+    flex     : 0 0 13.333%;
+    max-width: 13.333%;
+}
+
+.order_label:nth-child(6) {
+    flex     : 0 0 15%;
+    max-width: 15%;
+}
+
+.order_label:nth-child(7) {
+    flex     : 0 0 8.3333%;
+    max-width: 8.3333%;
+}
+
+.order__item {
+    width  : 100%;
+    display: flex;
+    padding: 0 10px;
+
+
+}
+
+.order__item>span {
+    text-align : center;
+    border     : 1px solid black;
+    line-height: 30px;
+}
+
+
+
+.order__item>span:nth-child(1) {
+    flex         : 0 0 5%;
+    max-width    : 5%;
+    overflow     : hidden;
+    text-overflow: ellipsis;
+    white-space  : nowrap;
+}
+
+.order__item>span:nth-child(2) {
+    flex         : 0 0 16.6333%;
+    max-width    : 16.6333%;
+    overflow     : hidden;
+    text-overflow: ellipsis;
+    white-space  : nowrap;
+}
+
+.order__item>span:nth-child(3) {
+    flex         : 0 0 16.6333%;
+    max-width    : 16.6333%;
+    overflow     : hidden;
+    text-overflow: ellipsis;
+    white-space  : nowrap;
+}
+
+.order__item>span:nth-child(4) {
+    flex         : 0 0 25%;
+    max-width    : 25%;
+    overflow     : hidden;
+    text-overflow: ellipsis;
+    white-space  : nowrap;
+}
+
+.order__item>span:nth-child(5) {
+    flex         : 0 0 13.333%;
+    max-width    : 13.333%;
+    overflow     : hidden;
+    text-overflow: ellipsis
+}
+
+.order__item>span:nth-child(6) {
+    flex         : 0 0 15%;
+    max-width    : 15%;
+    overflow     : hidden;
+    text-overflow: ellipsis;
+    white-space  : nowrap;
+}
+
+.order__item>span:nth-child(7) {
+    flex         : 0 0 8.3333%;
+    max-width    : 8.3333%;
+    overflow     : hidden;
+    text-overflow: ellipsis;
+    white-space  : nowrap;
+}
+
+.order__content {
+    display: block;
+    padding: 0 5px;
+
+
+}
+
+.order__icon {
+    cursor    : pointer;
+    text-align: center;
+}
+
+.order__detail {
+    width         : 100%;
+    line-height   : 30px;
+    padding       : 0 10px;
+    display       : flex;
+    flex-direction: column;
+}
+
+.order__detail__lab {
+    display: flex;
+}
+
+.orderDetail_label {
+
+    max-width       : 16.6666%;
+    flex            : 16.666%;
+    text-align      : center;
+    font-weight     : 600;
+    border          : 1px solid black;
+    background-color: wheat;
+
+}
+
+.order__detail__list {
+    display: flex;
+}
+
+.hide {
+    display: none;
+}
+
+.orderDetail_item {
+    max-width       : 16.6666%;
+    flex            : 16.666%;
+    border          : 1px solid black;
+    background-color: wheat;
+    overflow        : hidden;
+    text-overflow   : ellipsis;
+    white-space     : nowrap;
+}

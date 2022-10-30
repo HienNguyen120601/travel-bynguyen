@@ -125,6 +125,10 @@
 
 }
 
+.nav__bar__menu__item {
+    font-size: 18px;
+}
+
 .nav__bar__menu__item:hover.nav__bar__menu__item>i {
 
     animation: rotate 1s 1;

@@ -1,7 +1,8 @@
-var apiTour = 'https://travel-api-hiennguyen.herokuapp.com/api/tour'
+var apiTour = 'https://travel-api-hiennguyen.vercel.app/api/tour'
 
-var apiOrder = 'https://632d7be60d7928c7d24c1655.mockapi.io/Order'
-var apiUser = 'https://travel-api-hiennguyen.herokuapp.com/api/customer'
+var apiOrder = 'https://travel-api-hiennguyen.vercel.app/api/order'
+var apiOrderDetail = 'https://travel-api-hiennguyen.vercel.app/api/orderDetail'
+var apiUser = 'https://travel-api-hiennguyen.vercel.app/api/customer'
 function onLoad() {
 
     const login = sessionStorage.getItem('adminlogin')
@@ -47,6 +48,15 @@ function getUser(callback) {
 }
 function getOrder(callback) {
     fetch(apiOrder).then(function (reponse) {
+        return reponse.json()
+    })
+        .then(callback)
+        .catch(function () {
+            alert("Có lỗi vui lòng reload")
+        })
+}
+function getOrderDetail(callback) {
+    fetch(apiOrderDetail).then(function (reponse) {
         return reponse.json()
     })
         .then(callback)
@@ -377,5 +387,143 @@ function showUpdateForm(tour) {
     })
 
 }
+async function renderOrder() {
+    const header = document.querySelector('.content__header')
+    const service = document.querySelector('.content__service')
+    sessionStorage.setItem('render', 'order')
+    header.innerHTML =
+        `
+    <span id="title">Quản trị sản phẩm</span>
+                <i class="fa-solid fa-chevron-right"></i>
+                <span id='product'>Đơn hàng</span>
+    `
+    service.innerHTML =
+        `
+        <div class="service__search">
+        <input type="text" placeholder="Nhập tên khách hàng" class="service__input">
+        <i class="fa-solid fa-magnifying-glass" onclick="searchCustomer();"></i>
+    </div>
+    `
+    const contentProduct = document.querySelector('.content__product')
+    contentProduct.innerHTML = `
+            <span class="order_label">STT</span>
+            <span class="order_label">Customer</span>
+            <span class="order_label">Hotel</span>
+            <span class="order_label">Tour</span>
+            <span class="order_label">Date</span>
+            <span class="order_label">PhoneNumber</span>
+            <span class="order_label">Status</span>`
+    const contentList = document.querySelector('.content__list')
+    await getOrder(function (orders) {
+        var htmls = orders.map((order, index) => {
+            if (order.status)
+                var status = "Đã thanh toán"
+            else
+                var status = "Chưa thanh toán"
 
+            return `
+            <div class="order__item" >
+                    <span class="order__content">
+                    <span class="inner__icon">
+                    <i data-id=${order._id} onclick="renderOrderDetail(this);" class="fa-solid fa-sort-down order__icon"></i></span>
+                    ${index}</span>
+                    <span class="order__content">${order.customer_name}</span>
+                    <span class="order__content">${order.hotel_id}</span>
+                    <span class="order__content">${order.tour_name}</span>
+                    <span class="order__content">${order.date}</span>
+                    <span class="order__content">${order.phonenumber}</span>
+                    <span class="order__content">
+                       ${status
+                }
+                    </span>
+                </div> 
+                
+            </div>
+            <div class="order__detail__${order._id} order__detail hide">
+                <div class="order__detail__lab__${order._id} order__detail__lab">
+                    
+                </div>
+                <div class="order__detail__list__${order._id} order__detail__list">
+                    
+                </div>
+                </div>
+                `
+        })
+        contentList.innerHTML = htmls.join('')
+
+        const iconOrder = document.querySelectorAll(".order__icon")
+
+        const orderDetail = document.querySelectorAll('.order__detail')
+
+        Array.from(orderDetail).map((order, index) => {
+
+            Array.from(iconOrder).map((icon, indexicon) => {
+                if (index == indexicon) {
+                    icon.addEventListener('click', function () {
+                        const hide = order.classList.contains('hide')
+                        if (hide)
+                            order.classList.remove('hide')
+                        else
+                            order.classList.add('hide')
+                    })
+                }
+
+            })
+
+
+        })
+        // iconOrder.addEventListener('click', function () {
+        //     orderDetail.classList.remove('hide')
+
+
+        // })
+    })
+
+
+}
+function renderOrderDetail(tour) {
+
+    const id = tour.getAttribute('data-id')
+
+    const orderdetail = document.querySelector(`.order__detail__${id}`)
+
+    const orderLabel = orderdetail.querySelector(`.order__detail__lab__${id}`)
+    const orderList = orderdetail.querySelector(`.order__detail__list__${id}`)
+    getOrderDetail(function (orders) {
+        const getOrderbyID = orders.filter(order => {
+            return id == order.order_id
+        })
+        orderLabel.innerHTML = `
+        <span class="orderDetail_label">Driver</span>
+                    <span class="orderDetail_label">Vehicle</span>
+                    <span class="orderDetail_label">TourGuide</span>
+                    <span class="orderDetail_label">Marge</span>
+                    <span class="orderDetail_label">People</span>
+                    <span class="orderDetail_label">Note</span>
+       `
+        const htmls = getOrderbyID.map(order => {
+            orderList.innerHTML = `
+            <span class="orderDetail_item">${order.driver_id}</span>
+            <span class="orderDetail_item">${order.vehicle_id}</span>
+            <span class="orderDetail_item">${order.tourguide_id}</span>
+            <span class="orderDetail_item">${order.merge_tour}</span>
+            <span class="orderDetail_item">${order.numberOfPeople}</span>
+            <span class="orderDetail_item">${order.note}</span>
+        `
+        })
+    })
+
+
+}
+function showOrderDetail() {
+    const innerIcon = document.querySelector(".inner__icon")
+    innerIcon.innerHTML = `<i  class="fa-solid fa-sort-up dropDowIcon"></i>`
+    const dropDowIcon = document.querySelector('.dropDowIcon')
+    dropDowIcon.addEventListener('click', function () {
+
+    })
+}
+function hadleIcon() {
+
+}
 onLoad()
