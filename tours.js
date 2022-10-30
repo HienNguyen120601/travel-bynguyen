@@ -134,7 +134,7 @@ function searchTour() {
     else {
         getTours(function (tours) {
             const tourBySearch = tours.filter((tour) => {
-                return tour.title.search(searchInput) != -1
+                return tour.title.toUpperCase().search(searchInput.toUpperCase()) != -1
             })
             // if (!tourBySearch[0]) {
             //     resulBody.innerHTML = `<span class="search__message">Can not found:"${searchInput}"</span>`

@@ -150,7 +150,7 @@ function searchTour() {
     else {
         getTours(function (tours) {
             const tourBySearch = tours.filter((tour) => {
-                return tour.title.search(searchInput) != -1
+                return tour.title.toUpperCase().search(searchInput.toUpperCase()) != -1
             })
             console.log(tourBySearch)
             const htmls = tourBySearch.map((tour) => {
