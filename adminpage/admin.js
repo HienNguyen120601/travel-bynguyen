@@ -297,7 +297,7 @@ function searchTour() {
     const input = search.querySelector('.service__input').value
     getTours(function (tours) {
         const tourByTitle = tours.filter((tour) => {
-            return tour.title.search(input) != -1
+            return tour.title.toUpperCase().search(input.toUpperCase()) != -1
         })
         const htmls = tourByTitle.map((tour, index) => {
             return `<div class="product__item">
@@ -324,7 +324,7 @@ function searchCustomer() {
     const input = search.querySelector('.service__input').value
     getUser(function (users) {
         const tourByTitle = users.filter((user) => {
-            return user.username.search(input) != -1
+            return user.username.toUpperCase().search(input.toUpperCase()) != -1
         })
         const htmls = tourByTitle.map((user, index) => {
             return `
@@ -401,7 +401,7 @@ async function renderOrder() {
         `
         <div class="service__search">
         <input type="text" placeholder="Nhập tên khách hàng" class="service__input">
-        <i class="fa-solid fa-magnifying-glass" onclick="searchCustomer();"></i>
+        <i class="fa-solid fa-magnifying-glass" onclick="searchOrder();"></i>
     </div>
     `
     const contentProduct = document.querySelector('.content__product')
@@ -415,6 +415,7 @@ async function renderOrder() {
             <span class="order_label">Status</span>`
     const contentList = document.querySelector('.content__list')
     await getOrder(function (orders) {
+
         var htmls = orders.map((order, index) => {
             if (order.status)
                 var status = "Đã thanh toán"
@@ -472,11 +473,7 @@ async function renderOrder() {
 
 
         })
-        // iconOrder.addEventListener('click', function () {
-        //     orderDetail.classList.remove('hide')
 
-
-        // })
     })
 
 
@@ -523,7 +520,73 @@ function showOrderDetail() {
 
     })
 }
-function hadleIcon() {
+function searchOrder() {
+    const search = document.querySelector('.service__search')
+    const input = search.querySelector('.service__input').value
+    const contentList = document.querySelector('.content__list')
+    getOrder(function (orders) {
+        const findOrderByName = orders.filter(order => {
+            return order.customer_name.toUpperCase().search(input.toUpperCase()) != -1
+        })
 
+        const htmls = findOrderByName.map((order, index) => {
+
+            if (order.status)
+                var status = "Đã thanh toán"
+            else
+                var status = "Chưa thanh toán"
+
+            return `
+                <div class="order__item" >
+                        <span class="order__content">
+                        <span class="inner__icon">
+                        <i data-id=${order._id} onclick="renderOrderDetail(this);" class="fa-solid fa-sort-down order__icon"></i></span>
+                        ${index}</span>
+                        <span class="order__content">${order.customer_name}</span>
+                        <span class="order__content">${order.hotel_id}</span>
+                        <span class="order__content">${order.tour_name}</span>
+                        <span class="order__content">${order.date}</span>
+                        <span class="order__content">${order.phonenumber}</span>
+                        <span class="order__content">
+                           ${status
+                }
+                        </span>
+                    </div> 
+                    
+                </div>
+                <div class="order__detail__${order._id} order__detail hide">
+                    <div class="order__detail__lab__${order._id} order__detail__lab">
+                        
+                    </div>
+                    <div class="order__detail__list__${order._id} order__detail__list">
+                        
+                    </div>
+                    </div>
+                    `
+        })
+        contentList.innerHTML = htmls.join('')
+
+        const iconOrder = document.querySelectorAll(".order__icon")
+
+        const orderDetail = document.querySelectorAll('.order__detail')
+
+        Array.from(orderDetail).map((order, index) => {
+
+            Array.from(iconOrder).map((icon, indexicon) => {
+                if (index == indexicon) {
+                    icon.addEventListener('click', function () {
+                        const hide = order.classList.contains('hide')
+                        if (hide)
+                            order.classList.remove('hide')
+                        else
+                            order.classList.add('hide')
+                    })
+                }
+
+            })
+
+
+        })
+    })
 }
 onLoad()
