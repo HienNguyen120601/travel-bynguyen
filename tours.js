@@ -104,7 +104,6 @@ function onLoad() {
         renderTour(tours)
     })
 }
-
 function getTours(callback) {
     fetch(apiTour).then(function (reponse) {
         return reponse.json()
@@ -195,7 +194,6 @@ function renderTour(tours) {
     tourPackage.innerHTML = htmls.join('')
 
 }
-
 function showTourDetail(booking) {
     window.location = './cagetory.html'
 
@@ -212,7 +210,6 @@ function getOrder(callback) {
             alert("Có lỗi vui lòng reload")
         })
 }
-
 function renderOrder() {
     const userEmail = sessionStorage.getItem('email')
     const order = document.querySelector('.order')

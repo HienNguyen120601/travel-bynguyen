@@ -251,13 +251,13 @@ function renderCustormer() {
     getUser(function (users) {
 
         const htmls = users.map((user, index) => {
-
+            const hash = CryptoJS.MD5(user.password).words.join('')
             return `
                 <div class="customer__item">
                 <span class="customer__content">${index + 1}</span>
                 <span class="customer__content">${user.username}</span>
                 <span class="customer__content">${user.email}</span>
-                <span class="customer__content">${user.password}</span>
+                <span class="customer__content">${hash}</span>
                 <span class="customer__content">${user.block}</span>
                 <span class="customer__content">
                 <i onclick="blockCustormer(this)" class="fa-solid fa-ban" data-id="${user._id}"></i>
