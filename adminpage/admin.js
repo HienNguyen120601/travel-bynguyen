@@ -206,10 +206,11 @@ function renderTour() {
                 <span class="product__content">${tour.price}</span>
                 <span class="product__content">${tour.numberOfDay}</span>
                 <span class="product__content">${tour.description}</span>
-                <span class="product__content">${tour.img}</span>
+                <span class="product__content" img-src=${tour.img} onclick="previewImg(this)"><i class="fa-solid fa-eye"></i></span>
                 <span class="product__content">
                 <i onclick="deleteTour(this);" class="fa-solid fa-circle-xmark" data-id=${tour._id}></i>
                 <i onclick="showUpdateForm(this)" class="fa-solid fa-pen" data-id=${tour._id}></i>
+                
                 </span>
             </div>`
         })
@@ -218,6 +219,19 @@ function renderTour() {
     })
 
 
+}
+function previewImg(img) {
+    const imgSrc = img.getAttribute('img-src')
+    const imgPreview = document.querySelector('.img__preview')
+    imgPreview.style.display = "block"
+    const overlay = imgPreview.querySelector('.preview__overlay')
+    const content = imgPreview.querySelector('.preview__content')
+    content.innerHTML = `<img src="../asserts/img/travel/${imgSrc}" alt="">
+    `
+    console.log(overlay)
+    overlay.addEventListener('click', () => {
+        imgPreview.style.display = "none"
+    })
 }
 function renderCustormer() {
     const header = document.querySelector('.content__header')
