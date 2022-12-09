@@ -12,6 +12,7 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } f
 
 
 
+
 const firebaseConfig = {
     apiKey: "AIzaSyCzr_whzBIUOJESw6QXi-pteqSZt6X7YdU",
     authDomain: "travel-booking-f3ed4.firebaseapp.com",
@@ -33,6 +34,7 @@ if (islogin == 1) {
     const user = document.querySelector('.header__topbar__user')
     accout.classList.add('hide')
     user.classList.remove('hide')
+
 }
 else {
 

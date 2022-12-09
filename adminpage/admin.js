@@ -1,5 +1,5 @@
 var apiTour = 'https://travel-api-hiennguyen.vercel.app/api/tour'
-
+var apiCount = 'https://travel-api-hiennguyen.vercel.app/api/count'
 var apiOrder = 'https://travel-api-hiennguyen.vercel.app/api/order'
 var apiOrderDetail = 'https://travel-api-hiennguyen.vercel.app/api/orderDetail'
 var apiUser = 'https://travel-api-hiennguyen.vercel.app/api/customer'
@@ -20,6 +20,9 @@ function onLoad() {
     else if (render == 'customer') {
         renderCustormer()
     }
+    else if (render == 'report') {
+        renderReport()
+    }
     else {
         renderTour()
     }
@@ -30,6 +33,15 @@ function onLoad() {
 }
 function getTours(callback) {
     fetch(apiTour).then(function (reponse) {
+        return reponse.json()
+    })
+        .then(callback)
+        .catch(function () {
+
+        })
+}
+function getCount(callback) {
+    fetch(apiCount).then(function (reponse) {
         return reponse.json()
     })
         .then(callback)
@@ -165,6 +177,49 @@ async function deleteTour(tour) {
     await location.reload()
 
 
+
+}
+function renderReport() {
+    const header = document.querySelector('.content__header')
+    header.innerHTML =
+        `
+    <span id="title">Quản trị sản phẩm</span>
+                <i class="fa-solid fa-chevron-right"></i>
+                <span id='product'>Báo cáo</span>
+    `
+    sessionStorage.setItem('render', 'report')
+    const contentProduct = document.querySelector('.content__product')
+    const htmls = `
+<div>
+  <canvas id="myChart"></canvas>
+</div>
+`
+    const contentList = document.querySelector('.content__list')
+    contentList.innerHTML = ``
+    contentProduct.innerHTML = htmls
+    const ctx = document.getElementById('myChart');
+
+    getCount(function (counts) {
+        console.log(counts[0])
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Truy cập', 'Đặt hàng'],
+                datasets: [{
+                    label: '# of Votes',
+                    data: [counts[0].visitCount, counts[0].orderCount],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    })
 
 }
 function renderTour() {

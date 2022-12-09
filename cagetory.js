@@ -1,6 +1,8 @@
 
 var cagetory = document.querySelector('.cagetory__wrap')
 var apiTour = 'https://travel-api-hiennguyen.vercel.app/api/tour'
+var apiCount = 'https://travel-api-hiennguyen.vercel.app/api/count'
+
 var apiUser = 'https://travel-api-hiennguyen.vercel.app/api/customer'
 var apiOrder = 'https://travel-api-hiennguyen.vercel.app/api/order'
 var apiOrderDetail = 'https://travel-api-hiennguyen.vercel.app/api/orderDetail'
@@ -98,12 +100,35 @@ function showSinginForm() {
     })
 
 }
+
 function onLoad() {
     var id = localStorage.getItem("detail")
     getTours(function (tours) {
         renderTour(tours, id || "6357ad0add19d4ece548d0e7")
     })
     // localStorage.clear();
+}
+function updateData(api, id, data) {
+    fetch(api + '/' + id, {
+        method: 'Put',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(data)
+
+    })
+        .then()
+
+
+}
+function getCount(callback) {
+    fetch(apiCount).then(function (reponse) {
+        return reponse.json()
+    })
+        .then(callback)
+        .catch(function () {
+            alert("Có lỗi vui lòng reload")
+        })
 }
 function getTours(callback) {
     fetch(apiTour).then(function (reponse) {
@@ -328,6 +353,15 @@ function showResult() {
                         postOrderDetail(apiOrderDetail, dataDetail)
                     })
                 })
+            })
+            getCount(function (counts) {
+                const id = counts[0]._id
+                const data = {
+                    visitCount: counts[0].visitCount,
+                    orderCount: counts[0].orderCount + 1
+                }
+                console.log(data)
+                updateData(apiCount, id, data)
             })
             const toast = document.createElement('div')
             toast.classList.add('toastsuccess');

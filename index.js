@@ -3,8 +3,25 @@ var cagetory = document.querySelector('.cagetory__wrap')
 var apiTour = 'https://travel-api-hiennguyen.vercel.app/api/tour'
 var apiUser = 'https://travel-api-hiennguyen.vercel.app/api/customer'
 var apiOrder = 'https://travel-api-hiennguyen.vercel.app/api/order'
+var apiCount = 'https://travel-api-hiennguyen.vercel.app/api/count'
 
 
+function onLoad() {
+    getCount(function (counts) {
+        const id = counts[0]._id
+        const data = {
+            visitCount: counts[0].visitCount + 1,
+            orderCount: counts[0].orderCount
+        }
+        updateData(apiCount, id, data)
+    })
+    getTourbyNumber()
+    setTimeout(() => {
+        closeAdmin()
+    }, 2000)
+
+
+}
 
 var tourTitle
 function showAdmin() {
@@ -99,6 +116,7 @@ function showSinginForm() {
     })
 
 }
+
 function getTourbyNumber() {
     getTours(function (tours) {
 
@@ -109,14 +127,29 @@ function getTourbyNumber() {
         renderTour(sixtour)
     })
 }
-function onLoad() {
-
-    getTourbyNumber()
-    setTimeout(() => {
-        closeAdmin()
-    }, 2000)
 
 
+function updateData(api, id, data) {
+    fetch(api + '/' + id, {
+        method: 'Put',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(data)
+
+    })
+        .then()
+
+
+}
+function getCount(callback) {
+    fetch(apiCount).then(function (reponse) {
+        return reponse.json()
+    })
+        .then(callback)
+        .catch(function () {
+            alert("Có lỗi vui lòng reload")
+        })
 }
 function getUser(callback) {
     fetch(apiUser).then(function (reponse) {
