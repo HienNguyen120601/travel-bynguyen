@@ -181,12 +181,14 @@ async function deleteTour(tour) {
 }
 function renderReport() {
     const header = document.querySelector('.content__header')
+    const service = document.querySelector('.content__service')
     header.innerHTML =
         `
     <span id="title">Quản trị sản phẩm</span>
                 <i class="fa-solid fa-chevron-right"></i>
                 <span id='product'>Báo cáo</span>
     `
+    service.innerHTML = ``
     sessionStorage.setItem('render', 'report')
     const contentProduct = document.querySelector('.content__product')
     const htmls = `
