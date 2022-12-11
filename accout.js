@@ -70,7 +70,7 @@ function getUser(callback) {
 const signUpform = document.querySelector('.registerform')
 const formGroup = signUpform.querySelector('.auth-form')
 const signUp = signUpform.querySelector('.btn_signup')
-const apiUser = 'https://travel-api-hiennguyen.herokuapp.com/api/customer'
+const apiUser = 'https://travel-api-hiennguyen.vercel.app/api/customer'
 var nameRegex = /^[a-zA-Z0-9\-]+$/;
 var emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
 signUp.addEventListener('click', () => {
@@ -162,7 +162,6 @@ signIn.addEventListener('click', () => {
             formLogin.querySelector('.messageEmail').innerText = 'Email không tồn tại'
         }
         else {
-
             const findEmail = users.filter((user) => {
                 return user.email == email
             })
