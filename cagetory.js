@@ -100,7 +100,6 @@ function showSinginForm() {
     })
 
 }
-
 function onLoad() {
     var id = localStorage.getItem("detail")
     getTours(function (tours) {
