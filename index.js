@@ -7,20 +7,20 @@ var apiCount = 'https://travel-api-hiennguyen.vercel.app/api/count'
 
 
 function onLoad() {
-    // const visits = sessionStorage.getItem("visit");
-    // console.log(visits)
-    // if (!visits) {
-    //     getCount(function (counts) {
-    //         const id = counts[0]._id
-    //         const data = {
-    //             visitCount: counts[0].visitCount + 1,
-    //             orderCount: counts[0].orderCount
-    //         }
-    //         updateData(apiCount, id, data)
-    //         sessionStorage.setItem("visit", true)
-    //     })
+    const visits = sessionStorage.getItem("visit");
+    console.log(visits)
+    if (!visits) {
+        getCount(function (counts) {
+            const id = counts[0]._id
+            const data = {
+                visitCount: counts[0].visitCount + 1,
+                orderCount: counts[0].orderCount
+            }
+            updateData(apiCount, id, data)
+            sessionStorage.setItem("visit", true)
+        })
 
-    // }
+    }
 
     getTourbyNumber()
     setTimeout(() => {
