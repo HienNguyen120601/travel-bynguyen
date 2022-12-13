@@ -191,7 +191,7 @@ function searchTour() {
   BOOK NOW
     </button>
     <div class="container__package__price">From</br>
-        <span>${tour.price}</span>
+        <span>$${tour.price}.00</span>
     </div>
 </div>
 </div>
