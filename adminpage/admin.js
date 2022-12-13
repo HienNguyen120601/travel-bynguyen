@@ -260,7 +260,7 @@ function renderTour() {
                 <div class="product__item">
                 <span class="product__content">${index + 1}</span>
                 <span class="product__content">${tour.title}</span>
-                <span class="product__content">${tour.price}</span>
+                <span class="product__content">$${tour.price}.00</span>
                 <span class="product__content">${tour.numberOfDay}</span>
                 <span class="product__content">${tour.description}</span>
                 <span class="product__content" img-src=${tour.img} onclick="previewImg(this)"><i class="fa-solid fa-eye"></i></span>
